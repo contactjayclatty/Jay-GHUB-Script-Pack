@@ -17,12 +17,20 @@ try {
     }
     $status=Get-MpComputerStatus
     if (-not $status.AMServiceEnabled -or -not $status.AntivirusEnabled) { throw 'Defender is not active; no valid clean scan can be reported.' }
-    Update-MpSignature
-    $status=Get-MpComputerStatus
-    if (-not $status.AntivirusSignatureLastUpdated -or $status.AntivirusSignatureLastUpdated -lt (Get-Date).AddDays(-2)) { throw 'Defender security intelligence is older than two days.' }
     $platform=Get-ChildItem -LiteralPath (Join-Path $env:ProgramData 'Microsoft\Windows Defender\Platform') -Directory -ErrorAction SilentlyContinue | Sort-Object Name -Descending | Select-Object -First 1
     $scanner=Join-Path $env:ProgramFiles 'Windows Defender\MpCmdRun.exe'
     if ($platform -and (Test-Path -LiteralPath (Join-Path $platform.FullName 'MpCmdRun.exe'))) { $scanner=Join-Path $platform.FullName 'MpCmdRun.exe' }
+    $updated=$false
+    for ($attempt=1; $attempt -le 3; $attempt++) {
+        $updateLog=@(& $scanner -SignatureUpdate -MMPC 2>&1)
+        $updateCode=$LASTEXITCODE
+        Write-Output ($updateLog -join "`n")
+        if ($updateCode -eq 0) { $updated=$true; break }
+        if ($attempt -lt 3) { Start-Sleep -Seconds 5 }
+    }
+    if (-not $updated) { throw 'Defender signature update failed; no clean scan can be reported.' }
+    $status=Get-MpComputerStatus
+    if (-not $status.AntivirusSignatureLastUpdated -or $status.AntivirusSignatureLastUpdated -lt (Get-Date).AddDays(-2)) { throw 'Defender security intelligence is older than two days.' }
     $files=@(Get-ChildItem -LiteralPath $target -Filter '*.exe' -File)
     if ($files.Count -ne 1) { throw 'Expected exactly one release executable.' }
     $checks=@()
