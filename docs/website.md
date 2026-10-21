@@ -29,3 +29,7 @@ Browser validation covers desktop and phone-width layouts, navigation, previews,
 ## Latest browser checks
 
 The five-page site passed overflow checks at 320, 390, 768 and 1265 pixels. A throttled local transfer showed changing byte counts, cancellation, successful retry, SHA-256 verification and a save request. A deliberately changed ZIP response was rejected with Save unavailable. These checks exercise browser behavior; they do not run the installer.
+
+## Download page layout
+
+The download page leads with a dedicated installer release panel and one primary download action. ZIP/source options follow, with a separate evidence section, expandable checksum and download-specific help. Mobile hides the introductory benefit list to bring the primary action higher. The transfer dialog marks Receive, Verify and Save stages and offers the setup guide after requesting a save. It still measures actual bytes and checks the same published hashes.

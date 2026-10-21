@@ -45,6 +45,17 @@ if (dialog && window.fetch && window.crypto?.subtle && typeof dialog.showModal =
   const retry = document.querySelector('#retry-transfer');
   const cancel = document.querySelector('#cancel-transfer');
   const fallback = document.querySelector('#transfer-fallback');
+  const next = document.querySelector('#transfer-next');
+  function stage(name) {
+    dialog.dataset.stage = name;
+    const order = ['receive', 'verify', 'save'];
+    document.querySelectorAll('[data-phase]').forEach(item => {
+      const current = item.dataset.phase === name;
+      item.classList.toggle('complete', order.indexOf(item.dataset.phase) < order.indexOf(name) || name === 'saved');
+      if (current) item.setAttribute('aria-current', 'step');
+      else item.removeAttribute('aria-current');
+    });
+  }
   let controller;
   let objectUrl;
   let currentFile;
@@ -76,6 +87,8 @@ if (dialog && window.fetch && window.crypto?.subtle && typeof dialog.showModal =
     controller = new AbortController();
     const signal = controller.signal;
     save.hidden = true;
+    if (next) next.hidden = true;
+    stage('receive');
     retry.hidden = true;
     cancel.hidden = false;
     progress.hidden = false;
@@ -128,6 +141,7 @@ if (dialog && window.fetch && window.crypto?.subtle && typeof dialog.showModal =
       if (thisGeneration !== generation) return;
       if (data.byteLength !== file.size) throw new Error('The transfer ended before the full file arrived.');
       title.textContent = 'Checking the file.';
+      stage('verify');
       status.textContent = 'Comparing SHA-256 with the published release.';
       const digest = await crypto.subtle.digest('SHA-256', data);
       const hash = [...new Uint8Array(digest)].map(byte => byte.toString(16).padStart(2, '0')).join('');
@@ -139,6 +153,7 @@ if (dialog && window.fetch && window.crypto?.subtle && typeof dialog.showModal =
       amount.textContent = `${size(file.size)} / ${size(file.size)}`;
       percent.textContent = '100%';
       title.textContent = 'Verified. Ready to save.';
+      stage('save');
       status.textContent = 'File received. Its SHA-256 matches the published release. Choose Save file to send it to your browser’s download manager.';
       cancel.hidden = true;
       save.hidden = false;
@@ -146,6 +161,7 @@ if (dialog && window.fetch && window.crypto?.subtle && typeof dialog.showModal =
     } catch (error) {
       if (thisGeneration !== generation) return;
       releaseBlob();
+      stage('error');
       title.textContent = error.name === 'AbortError' ? 'Transfer cancelled.' : 'Download interrupted.';
       status.textContent = error.name === 'AbortError' ? 'No file was offered for saving. Try again when you’re ready.' : `${error.message} Retry, or use the direct GitHub link below.`;
       progress.removeAttribute('value');
@@ -176,6 +192,8 @@ if (dialog && window.fetch && window.crypto?.subtle && typeof dialog.showModal =
     anchor.click();
     anchor.remove();
     title.textContent = 'Save requested.';
+    stage('saved');
+    if (next) next.hidden = false;
     status.textContent = 'Check your browser’s download manager for the saved file. This page cannot confirm a disk save. You can request it again below.';
     save.textContent = 'Save again ↓';
   });
