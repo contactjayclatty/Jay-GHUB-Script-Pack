@@ -12,3 +12,7 @@
 - Do not add an open-source license without the owner's decision. Public visibility alone is not a license grant.
 
 Release limitations: executable unsigned; separate-machine UI/discovery UAT outstanding. Revisit release status when that test is recorded. No pricing, hosted service or paid dependency is introduced.
+
+## 2026-10-22: README and discoverability
+
+Jay requested a substantially improved README and a repository more likely to attract stars. Use accurate topics, clearer benefits and setup guidance, a static branded header, issue forms, Discussions and contributor guidance. Do not promise star growth, purchase/fabricate engagement, post promotional messages, invent results or publish the draft without approval. A public release remains a prerequisite for public binary downloads; the README makes that status explicit.

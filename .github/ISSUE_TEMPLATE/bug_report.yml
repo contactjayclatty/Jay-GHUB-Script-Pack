@@ -1,0 +1,45 @@
+name: Installation or uninstall bug
+description: Report a reproducible installer or G HUB discovery problem.
+title: "[Bug]: "
+labels: [bug]
+body:
+  - type: input
+    id: windows
+    attributes:
+      label: Windows version
+    validations:
+      required: true
+  - type: input
+    id: ghub
+    attributes:
+      label: Logitech G HUB version
+    validations:
+      required: true
+  - type: dropdown
+    id: installation
+    attributes:
+      label: How did you run it?
+      options:
+        - Built from source
+        - Release executable
+        - Release Windows ZIP
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Include installer version or commit and whether G HUB was fully closed.
+    validations:
+      required: true
+  - type: textarea
+    id: result
+    attributes:
+      label: Expected result and actual result
+    validations:
+      required: true
+  - type: textarea
+    id: error
+    attributes:
+      label: Error text or screenshot
+      description: Remove personal usernames and identifiers before sharing logs.

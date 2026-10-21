@@ -1,43 +1,200 @@
+<div align="center">
+
+![Jay's G HUB Script Pack — 78 operator templates with neutral defaults](assets/banner.svg)
+
 # Jay's G HUB Script Pack
 
-A Windows installer for 78 named Rainbow Six Siege operator Lua templates. Made for Jay's workflow; each new template starts with **zero vertical and horizontal movement**, so users can calibrate their own settings.
+**A Windows installer for 78 Rainbow Six Siege operator Lua templates in Logitech G HUB.**
 
-## Install
+Keep your scripts organized. Preserve existing tuning. Start with your own calibration.
 
-1. Download the `.exe` from [Releases](https://github.com/contactjayclatty/Jay-GHUB-Script-Pack/releases).
-2. Install and open Logitech G HUB at least once, then fully quit it from its tray icon.
-3. Run the installer under the Windows account that uses G HUB and choose **Install scripts**.
-4. Reopen G HUB and select the script for your intended profile in the Scripting editor.
+[![Windows validation](https://github.com/contactjayclatty/Jay-GHUB-Script-Pack/actions/workflows/validate.yml/badge.svg?branch=main)](https://github.com/contactjayclatty/Jay-GHUB-Script-Pack/actions/workflows/validate.yml)
+![Operators: 78](https://img.shields.io/badge/operators-78-78cfff)
+![Defaults: zero movement](https://img.shields.io/badge/defaults-zero%20movement-7fffc7)
+![Platform: Windows](https://img.shields.io/badge/platform-Windows-8baac7)
 
-The installer targets `%LOCALAPPDATA%\LGHUB\scripts`, creates unique folders, backs up existing scripts, and skips existing names (including aliases such as Jager/Jäger and Valk/Valkyrie). It does not automatically activate scripts or replace existing tuning.
+[Quick start](#quick-start) · [Configuration](#configure-your-script) · [All operators](#included-operators) · [Troubleshooting](#troubleshooting) · [Discussions](https://github.com/contactjayclatty/Jay-GHUB-Script-Pack/discussions)
 
-The executable is unsigned. The install/uninstall engine has been tested in isolated folders; the visual installer and discovery on another G HUB installation still need end-to-end testing. No guarantee of compatibility with every G HUB version is claimed.
+</div>
 
-## Configure
+> **Release status:** v1.1.0 is prepared as a **draft**. Public installer downloads are not available yet. Browse the source or [build it locally](#build-from-source). The install/uninstall engine passes automated tests; installer UI and discovery on another G HUB installation still need testing.
 
-Only `RcCustomStrength` and `HorizontalStrength` are placed in the basic tuning section. Both start at **0**. These are neutral defaults, not operator-specific recoil measurements.
+## What you get
 
-Timing and controls are marked advanced: `VerticalFrequency=2`, `HorizontalFrequency=4`, `DelayRate=7`, Caps Lock required, Custom mode. Burst resets, idle sleeps and aim-release checks are included. Guidance comments do not lock these settings.
+| Organized installation | Existing work preserved | Easy to review |
+| :--- | :--- | :--- |
+| One named script per operator, in a unique G HUB folder. | Existing names are skipped; scripts are backed up before installation. | Lua templates, installer source, Windows CI and SHA-256 release checksums. |
 
-Roster checked **22 October 2026** against [Ubisoft's operator directory](https://www.ubisoft.com/en-us/game/rainbow-six/siege/game-info/operators). See [OPERATORS.txt](OPERATORS.txt).
+- **78 operator templates**, including Noor and Solid Snake, from Ubisoft's roster checked on **22 October 2026**.
+- **Neutral starting values:** both movement strengths are `0`. No personal calibration is shipped.
+- **Two basic tuning fields**, with advanced timing and controls clearly separated.
+- **Consistent controls:** burst-start counter resets, an idle pause, and a check that stops compensation when aim is released.
+- **Uninstall that preserves edits:** only unchanged files installed by this package are removed.
 
-## Uninstall and recover
+These are configurable recoil-compensation templates. Operator names organize the files; they do **not** mean each script is calibrated for that operator's weapons. The installer does not activate a script, change Siege settings, or replace existing scripts.
 
-Quit G HUB and run the installer again, choosing **Uninstall pack**. It removes only unchanged scripts it installed. Modified scripts, unrelated scripts and backup snapshots remain.
+## Quick start
 
-Backups and ownership records: `%LOCALAPPDATA%\LGHUB\script-pack-installs\siege-operator-lua-pack-v1`. See [full instructions](README.txt).
+### 1. Prepare G HUB
 
-## Build and test
+Install and open **Logitech G HUB** at least once using the Windows account that will run the scripts. Then **fully quit G HUB from the system tray**.
 
-Windows with Windows PowerShell 5.1 and the .NET Framework compiler is required. Python 3 is used only for development tests, not by end users.
+### 2. Run the installer
+
+When the release is published, download the `.exe` or Windows ZIP from [Releases](https://github.com/contactjayclatty/Jay-GHUB-Script-Pack/releases). For now, use the source build below.
+
+Run the installer and choose **Install scripts**. It targets the current Windows user's data automatically—no username edits or administrator access are required for the normal per-user install.
+
+### 3. Select and configure
+
+Reopen G HUB, open the Scripting editor for the intended profile, and select the operator script. Configure the two strength values below. With the defaults unchanged, the script produces **no mouse movement**.
+
+**Runtime:** Windows PowerShell and .NET Framework. End users do not need Python or a .NET SDK. The executable is **unsigned** and application policies may block it.
+
+## Configure your script
+
+The basic section at the top of every template is:
+
+```lua
+-- USER TUNING
+RcCustomStrength = 0       -- Downward movement per vertical step.
+HorizontalStrength = 0     -- Negative = left; positive = right.
+```
+
+Your weapon, attachments, DPI and sensitivity affect calibration. There is no universal strength value, and this project does not claim measured recoil accuracy for all operators.
+
+<details>
+<summary><strong>Advanced settings — normally leave these alone</strong></summary>
+
+| Setting | Default | Purpose |
+| :--- | :---: | :--- |
+| `EnableRCS` | `true` | Enables the logic; zero strengths still mean no movement. |
+| `RecoilControlMode` | `"Custom"` | Uses the strength entered in the basic section. |
+| `VerticalFrequency` | `2` | Vertical step every two firing-loop iterations. |
+| `HorizontalFrequency` | `4` | Horizontal step every four firing-loop iterations. |
+| `DelayRate` | `7` | Requested firing-loop sleep in milliseconds. Actual timing can vary. |
+| `RequireToggle` | `true` | Requires the configured lock key before entering the aim loop. |
+| `ToggleKey` | `"CapsLock"` | Lock key used for activation. |
+
+The two firing branches remain separate. Both counters reset at each burst. `Sleep(1)` runs while aiming without firing. The firing loop exits when fire or aim is released. Caps Lock is checked before entering the aim loop, not continuously while inside it.
+
+These are guidance comments, not locked settings. Changing timing changes how existing strength values behave.
+
+</details>
+
+## What gets installed?
+
+```text
+%LOCALAPPDATA%\LGHUB\
+├── scripts\
+│   ├── <unique operator ID>\
+│   │   ├── config.json     # Display name in G HUB
+│   │   └── script.lua      # Operator template
+│   └── ...
+└── script-pack-installs\
+    └── siege-operator-lua-pack-v1\
+        ├── installed.json # Ownership and hashes for uninstall
+        └── backups\
+            └── <timestamp>\
+                └── scripts\
+```
+
+**Already have scripts?** Matching names are skipped—even if the contents differ. Older names such as `Jager` and `Valk` are recognized as aliases for `Jäger` and `Valkyrie`. Unrelated scripts stay in place. Existing scripts are not automatically updated.
+
+## Included operators
+
+<!-- operators:begin -->
+<details>
+<summary><strong>View all 78 operators</strong></summary>
+
+| Operator | Operator | Operator |
+| :--- | :--- | :--- |
+| Ace | Alibi | Amaru |
+| Aruni | Ash | Azami |
+| Bandit | Blackbeard | Blitz |
+| Brava | Buck | Capitão |
+| Castle | Caveira | Clash |
+| Deimos | Denari | Doc |
+| Dokkaebi | Echo | Ela |
+| Fenrir | Finka | Flores |
+| Frost | Fuze | Glaz |
+| Goyo | Gridlock | Grim |
+| Hibana | IQ | Iana |
+| Jackal | Jäger | Kaid |
+| Kali | Kapkan | Lesion |
+| Lion | Maestro | Maverick |
+| Melusi | Mira | Montagne |
+| Mozzie | Mute | Nomad |
+| Noor | Nøkk | Oryx |
+| Osa | Pulse | Ram |
+| Rauora | Rook | Sens |
+| Sentry | Skopós | Sledge |
+| Smoke | Solid Snake | Solis |
+| Striker | Tachanka | Thatcher |
+| Thermite | Thorn | Thunderbird |
+| Tubarão | Twitch | Valkyrie |
+| Vigil | Wamai | Warden |
+| Ying | Zero | Zofia |
+
+</details>
+<!-- operators:end -->
+
+Source: [Ubisoft's operator directory](https://www.ubisoft.com/en-us/game/rainbow-six/siege/game-info/operators), checked **22 October 2026**. The [catalog](payload/catalog.json) records names, aliases and hashes.
+
+## Uninstall or recover
+
+**Uninstall:** quit G HUB, run the installer again, and choose **Uninstall pack**. It removes unchanged scripts recorded as belonging to this package. Modified scripts, unrelated scripts and backup snapshots remain.
+
+**Recover:** with G HUB closed, copy the specific script folders you need from a snapshot's `scripts` directory back into `%LOCALAPPDATA%\LGHUB\scripts`. See [README.txt](README.txt) for the backup location and full instructions.
+
+## Troubleshooting
+
+| What happens | What to check |
+| :--- | :--- |
+| Installer asks you to close G HUB | Quit its tray icon. If processes remain, close `lghub` and `lghub_agent` in Task Manager, then retry. |
+| G HUB user data is not found | Open G HUB once under the same Windows account, then fully quit it. |
+| An operator is skipped | A matching name or alias already exists and was left unchanged. |
+| The script loads but does nothing | Both strengths default to `0`. Check the selected profile and Caps Lock too. |
+| Scripts do not appear | Restart G HUB and check its Scripting editor. If still missing, report Windows/G HUB versions and the install result; cross-install discovery is still being validated. |
+| Uninstall leaves a script behind | Its files or folder contents changed. It was preserved to protect your edits. |
+
+[Report an installation bug](https://github.com/contactjayclatty/Jay-GHUB-Script-Pack/issues/new?template=bug_report.yml) · [Ask a setup question](https://github.com/contactjayclatty/Jay-GHUB-Script-Pack/discussions)
+
+## Verified behavior and remaining checks
+
+| Check | Evidence |
+| :--- | :--- |
+| Fresh and repeat installation | Automated tests |
+| Existing-name, alias and Unicode handling | Automated tests |
+| Backup retention and preservation of edited scripts | Automated tests |
+| Ownership-aware uninstall and corrupt-payload rejection | Automated tests |
+| Payload hashes and Windows executable build | Windows CI |
+| Lua syntax for all 78 templates | Checked locally |
+| Installer UI and discovery on another G HUB install | **Still needs testing** |
+
+See [test scope and manual test steps](docs/testing.md). A passing build does not guarantee compatibility with every G HUB version.
+
+## Build from source
+
+On Windows, install **Git** and **Python 3** for development. Building uses Windows PowerShell and the .NET Framework C# compiler.
 
 ```powershell
+git clone https://github.com/contactjayclatty/Jay-GHUB-Script-Pack.git
+cd Jay-GHUB-Script-Pack
 python test_installer.py
 powershell -NoProfile -ExecutionPolicy Bypass -File .\build.ps1
 ```
 
-The executable is produced in `dist/`. Committed payload files are verified before building. To regenerate the roster templates, `build_defaults.py` additionally requires Lua 5.1 `luac.exe` at its documented local tool path; adjust that developer tool path for your machine. It uses `template.lua`, never a user's installed scripts. Regeneration is only required when changing the template or roster.
+The executable is written to `dist/`. Tests use temporary project folders and do not modify live G HUB scripts. Building uses the committed payload and does not read your personal scripts.
 
-See [maintainer documentation](docs/index.md), [release procedure](docs/releasing.md), and [agent guidance](AGENTS.md).
+To regenerate templates, see [maintainer architecture](docs/architecture.md). Generation additionally needs the Lua compiler, with its developer tool path configured for your machine.
 
-This project is independent of Logitech and Ubisoft. Their names identify compatibility and the operator roster. No software license grant is included pending the owner's licensing decision.
+## Help improve the pack
+
+The most useful contributions right now are **real installation reports**: Windows version, G HUB version, whether names appear correctly, and whether edited scripts survive uninstall. See [the roadmap](docs/roadmap.md) and [contribution guide](CONTRIBUTING.md).
+
+Use **Issues** for reproducible bugs and **Discussions** for setup questions and ideas. If the project saves you time, a star helps you keep track of it and shows Jay that it is useful.
+
+---
+
+Made by **[Jay](https://github.com/contactjayclatty)**. Independent of Logitech and Ubisoft; names identify compatibility and the roster. No source license grant is included pending the owner's licensing decision.

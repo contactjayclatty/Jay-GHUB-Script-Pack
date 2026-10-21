@@ -13,3 +13,5 @@ Required manual UAT before broad distribution:
 5. Record Windows/G HUB versions and observed results here.
 
 Status: isolated engine tests and local compiler checks passed before repository creation. Separate-machine visual/discovery UAT remains unverified. CI status must be checked live for each published commit.
+
+`python check_docs.py` verifies the generated README roster against the catalog, checks local document links and headings, and parses the static SVG header. Regenerate only its marked roster block with `python check_docs.py --write-roster`. This does not validate external URLs or replace inspecting GitHub's rendered README.

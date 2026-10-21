@@ -15,3 +15,11 @@ Verification: scoped install/uninstall tests, payload hashes, executable build a
 Librarian review: documentation links route the user to install, configure, recover, test and release procedures; the remaining runtime limits are explicitly stated. Final gate receipt records observed checks separately.
 
 Build finding: Windows PowerShell requires an explicit `System.IO.Compression` assembly load for `ZipArchiveMode`; added it alongside `System.IO.Compression.FileSystem`. This affected the new build wrapper, not the previously tested installer engine. The failed build was rerun after that fix.
+
+## 2026-10-22: presentation and community setup
+
+Jay requested a much stronger README and better prospects for stars. Replaced the plain landing page with a branded header, honest status/CI badges, setup and calibration guidance, full roster, troubleshooting, evidence table and contribution paths. Added issue/PR templates, contribution guidance, a realistic roadmap and a documentation checker in CI. Discovery settings use relevant topics and enable Discussions; no promotional messages or fabricated engagement are part of the task.
+
+Knowledge delta: `README.md`, `assets/banner.svg`, `CONTRIBUTING.md`, `.github/ISSUE_TEMPLATE/`, `.github/PULL_REQUEST_TEMPLATE.md`, `docs/roadmap.md`, this record, decisions/testing/index, agent guidance, and the new documentation CI gate. Installer code and the v1.1.0 draft assets are unchanged.
+
+Librarian review: setup, configuration, recovery, support and build paths are linked from the README and maintainer index. Draft downloads and remaining UAT are explicit. GitHub-rendered documentation and remote settings are checked after push. Stars are not a guaranteed outcome.

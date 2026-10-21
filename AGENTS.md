@@ -9,3 +9,5 @@ Read [docs/index.md](docs/index.md), [docs/decisions.md](docs/decisions.md) and 
 - Do not commit calibrated personal scripts, backups, account identifiers, or generated test data.
 - Run `python test_installer.py` and `powershell -NoProfile -ExecutionPolicy Bypass -File .\build.ps1` for installer changes. Review source and embedded hashes before release.
 - Follow [docs/releasing.md](docs/releasing.md). Releases remain drafts until Jay explicitly approves publication.
+- Run `python check_docs.py` after documentation changes. After roster updates, regenerate the README block with `python check_docs.py --write-roster`.
+- Keep discovery metadata accurate. Do not promise stars, invent testimonials, mark draft downloads public, or add unverified performance claims.

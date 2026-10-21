@@ -15,6 +15,8 @@ jobs:
           python-version: '3.12'
       - name: Test isolated install and uninstall
         run: python test_installer.py
+      - name: Check README and documentation
+        run: python check_docs.py
       - name: Build installer
         shell: powershell
         run: .\build.ps1
