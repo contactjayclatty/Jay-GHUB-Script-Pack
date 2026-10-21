@@ -1,13 +1,45 @@
-# Architecture and product scope
+# Developer guide
 
-The user runs `Launcher.cs`, a Windows .NET Framework executable. It extracts its embedded archive to a unique temporary directory, launches `Installer.ps1` with Windows PowerShell, waits for it to finish, then cleans its own temporary directory.
+## Components
 
-`Installer.ps1` displays Install/Uninstall actions and reads `payload/catalog.json`. The installer verifies hashes, snapshots existing scripts, writes fresh UUID folders and ownership records, and skips existing names. Uninstall requires recorded ownership and unchanged script/config hashes; modified files remain.
+| File | Responsibility |
+| :--- | :--- |
+| `Launcher.cs` | Extract the embedded package into a unique temporary directory, run the PowerShell installer and clean up afterward. |
+| `Installer.ps1` | Interface, payload validation, per-user installation, snapshots and uninstall ownership. |
+| `template.lua` | Neutral seed containing the shared controls. |
+| `build_defaults.py` | Generate the operator templates and catalog. |
+| `payload/catalog.json` | Names, aliases, version, roster source/date and hashes. |
+| `build.ps1` | Verify committed payload hashes, package resources and compile the executable. |
+| `scan-release.ps1` | Scan the exact built artifact and record evidence. |
 
-`template.lua` is the maintainer's neutral seed. `build_defaults.py` generates 78 operator-labelled copies and the catalog. `build.ps1` packages the committed payload and compiles the launcher. `test_installer.py` runs the engine against isolated directories. CI runs that test and build on Windows and uploads artifacts without publishing a release.
+## Build requirements
 
-The product distributes neutral templates; it does not measure recoil, promise specific performance, automatically select profiles, alter game files, sell entitlements or operate a backend. It is an independent Windows utility with no live service and no project-held credentials. GitHub repository/release access uses the maintainer's authenticated CLI outside the product.
+Windows, Python 3, Windows PowerShell and the .NET Framework C# compiler. Python uses only the standard library for tests. End users need Windows PowerShell and .NET Framework, not Python or a .NET SDK.
 
-Developer dependencies: Python 3 (standard library only), Windows PowerShell, .NET Framework C# compiler; Lua compiler is used for template-generation syntax checks. Runtime dependencies: Windows PowerShell and .NET Framework. There are no Python packages or embedded credentials.
+```powershell
+python test_installer.py
+python check_docs.py
+powershell -NoProfile -ExecutionPolicy Bypass -File .\build.ps1
+```
 
-The tactical UI is authored with Windows Forms, an original project icon and an SVG README banner. The preview renderer draws the actual form without installing anything. CI runs Microsoft Defender against the built release executable and extracted payload, then uploads both the scanned binary and its report. Release tooling must preserve that exact artifact.
+Output is written to `dist/`. Building uses the committed payload and never reads installed user scripts.
+
+## Regenerate templates
+
+Edit `template.lua` or the roster in `build_defaults.py`, then run the generator. It runs `luac -p`; configure its local Lua compiler path for your machine. Regeneration writes payload files and the catalog, so review both before committing. All distribution strengths must remain zero.
+
+Refresh the README roster with `python check_docs.py --write-roster`, then run the tests and build.
+
+## Data preservation
+
+Installation creates fresh UUID folders under the current user's G HUB scripts directory. Existing names/aliases are skipped. A snapshot precedes additions; the manifest records installed UUIDs and hashes.
+
+Uninstall checks ownership, hashes and folder contents before removal. Modified or unfamiliar files are preserved. Read [design choices](decisions.md) before changing those rules.
+
+## Interface and scanning
+
+The Windows Forms interface uses original project artwork. Preview it without installation using `Installer.ps1 -RenderPreview <png>`.
+
+CI builds on Windows, enables Defender only on its temporary runner, scans the executable plus extracted scripts and uploads a report. Use that exact binary for release. There is no hosted backend, runtime script downloader or embedded credential.
+
+[Tests](testing.md) · [Release checklist](releasing.md)

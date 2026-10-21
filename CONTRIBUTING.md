@@ -1,21 +1,32 @@
 # Contributing
 
-Start with the [README](README.md) and [roadmap](docs/roadmap.md).
+## Bugs and questions
 
-## Report a problem
+Use [Discussions](https://github.com/contactjayclatty/Jay-GHUB-Script-Pack/discussions) for setup help. Use the [bug form](https://github.com/contactjayclatty/Jay-GHUB-Script-Pack/issues/new?template=bug_report.yml) for a reproducible problem.
 
-Use the [installation bug form](https://github.com/contactjayclatty/Jay-GHUB-Script-Pack/issues/new?template=bug_report.yml). Include Windows and G HUB versions, how you installed, the exact error and clear steps. A script left behind after editing is expected uninstall behavior.
+Include Windows/G HUB versions, the installer version, steps, expected behavior and the actual result. Remove personal identifiers from screenshots and logs. Cross-install reports are especially useful; see the [manual test steps](docs/testing.md#manual-compatibility-check-still-needed).
 
-Use [Discussions](https://github.com/contactjayclatty/Jay-GHUB-Script-Pack/discussions) for questions. Reports from another Windows account or PC are especially useful because cross-install discovery is not yet verified.
+## Pull requests
 
-## Propose a change
+Keep the change focused. Explain what changes for users and which checks passed. State anything still untested.
 
-- Keep changes focused and explain their effect on existing users.
-- Do not submit personal calibrated scripts, local backups or account/device identifiers.
-- Preserve zero default strengths, separate firing branches and the existing controls unless the owner approves a behavior change.
-- Test with isolated folders, never live user scripts.
-- For installer changes, run `python test_installer.py` and the Windows `build.ps1` script.
-- For documentation changes, run `python check_docs.py` and keep procedures accurate.
-- Include actual test results and remaining limitations in the pull request.
+For installer changes:
 
-See [AGENTS.md](AGENTS.md). Licensing is undecided; do not assume unrestricted reuse or submit third-party material without permission.
+```powershell
+python test_installer.py
+powershell -NoProfile -ExecutionPolicy Bypass -File .\build.ps1
+```
+
+For documentation changes:
+
+```powershell
+python check_docs.py
+```
+
+After changing the roster, refresh its README block with `python check_docs.py --write-roster`.
+
+Preserve zero distribution strengths, separate firing branches and existing control behavior unless a behavior change is agreed. Never weaken payload hashes, ownership checks, name protection or edited-file preservation. Test against isolated directories, never live scripts.
+
+Do not submit personal calibration, backups, account identifiers or third-party material without permission. Licensing is undecided; public access does not imply unrestricted reuse.
+
+[Developer guide](docs/architecture.md) · [Design choices](docs/decisions.md) · [Roadmap](docs/roadmap.md)

@@ -34,7 +34,7 @@ def anchors(path):
     return {re.sub(r'[^\w\- ]', '', h.lower()).replace(' ', '-') for h in headings}
 
 checked = 0
-for doc in [root/'README.md', root/'AGENTS.md', root/'CONTRIBUTING.md', *list((root/'docs').glob('*.md'))]:
+for doc in [root/'README.md', root/'CONTRIBUTING.md', root/'CHANGELOG.md', *list((root/'docs').glob('*.md'))]:
     for target in re.findall(r'!?\[[^\]]*\]\(([^\s)]+)\)', doc.read_text(encoding='utf-8')):
         if target.startswith(('https://', 'http://', 'mailto:')):
             continue

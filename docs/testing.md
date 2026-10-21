@@ -1,21 +1,37 @@
-# Testing and limitations
+# Testing
 
-`python test_installer.py` checks all 78 neutral templates, then uses Windows PowerShell with explicit isolated test roots. It verifies fresh installation, repeat installation, exact names (including Unicode), aliases, existing script preservation, edited-script preservation, uninstall ownership, retained snapshots and corrupt-payload rejection before target creation.
+## Automated checks
 
-`build.ps1` verifies SHA-256 payload entries and compiles an executable. It does not prove the UI works or scripts are discovered by G HUB. Template generation also runs `luac -p`; the original local check used Lua 5.1 while G HUB's installed reference lists a Lua 5.4 subset. No undocumented runtime compatibility guarantee is inferred from this.
+| Command | Scope |
+| :--- | :--- |
+| `python test_installer.py` | All 78 neutral defaults; fresh/repeat installs; Unicode names and aliases; existing and edited-file preservation; backups; uninstall ownership; corrupt-payload rejection. |
+| `python check_docs.py` | README roster, local links/headings, UTF-8 text and static SVG parsing. |
+| `powershell -NoProfile -ExecutionPolicy Bypass -File .\build.ps1` | Payload hashes, embedded package and Windows executable build. |
+| `scan-release.ps1` in CI | Exact executable, extracted Lua payload and installer script scanned with Microsoft Defender. |
 
-Required manual UAT before broad distribution:
+Installer tests use isolated project directories and never modify live G HUB scripts. Template generation additionally uses `luac -p`; local syntax checks used Lua 5.1 while the installed G HUB reference lists a Lua 5.4 library subset. Syntax checks alone do not establish runtime compatibility.
 
-1. On a separate Windows account or PC, open G HUB once and fully quit it.
-2. Run installer; check Install/Uninstall UI and error if G HUB is still running.
-3. Confirm all new operator names appear in G HUB and zero-strength defaults produce no movement.
-4. Configure one test script, confirm it loads, then confirm uninstall preserves edited files and unrelated scripts.
-5. Record Windows/G HUB versions and observed results here.
+## Malware scan evidence
 
-Status: isolated engine tests and local compiler checks passed before repository creation. Separate-machine visual/discovery UAT remains unverified. CI status must be checked live for each published commit.
+The [v1.1.0 scan report](https://github.com/contactjayclatty/Jay-GHUB-Script-Pack/releases/download/v1.1.0/malware-scan-report.json) reports **no threats detected** and records the exact executable SHA-256, engine/signature versions, targets, exit codes, UTC timestamp, commit and CI run.
 
-`python check_docs.py` verifies the generated README roster against the catalog, checks local document links and headings, and parses the static SVG header. Regenerate only its marked roster block with `python check_docs.py --write-roster`. This does not validate external URLs or replace inspecting GitHub's rendered README.
+The scan requires active Defender and recent signatures. Only an ephemeral GitHub runner is reconfigured; local antivirus settings are not changed. Failed or unavailable scans fail CI. The released executable must match the report's hash.
 
-`Installer.ps1 -RenderPreview <png>` renders the real form offscreen without calling install/uninstall. The resulting screenshot is inspected for layout; it does not establish cross-PC G HUB discovery or interactive installation behavior.
+This is a single-engine, on-demand scan. It is not code signing or a safety guarantee.
 
-`scan-release.ps1` requires active Defender and current signatures. Only on GITHUB_ACTIONS does it enable the runner's scanner/remove preconfigured exclusions; it never configures the developer's local antivirus. Custom scans use DisableRemediation so detections remain a failed check rather than being silently removed. The JSON report identifies the executable hash, scanner/signature versions, targets, exit codes, UTC time, commit and CI run. A failed or unavailable scan fails CI and must not be reported clean. The uploaded executable must match that report before release.
+## Interface preview
+
+`Installer.ps1 -RenderPreview <png>` renders the actual form offscreen without installing or removing scripts. The README preview was inspected for layout. It does not prove interactive behavior on another machine.
+
+## Manual compatibility check still needed
+
+On another Windows account or PC:
+
+1. Open G HUB once, then fully quit it.
+2. Run the installer and confirm that an active G HUB process produces a clear error.
+3. Install the pack, reopen G HUB and check operator names in the Scripting editor.
+4. Confirm zero strengths cause no movement, then configure one test script.
+5. Edit that script, uninstall the pack, and confirm the edit and unrelated scripts survive.
+6. Record Windows version, G HUB version and observed results in an issue or discussion.
+
+Cross-install discovery remains unverified. CI success must not be presented as universal G HUB compatibility.

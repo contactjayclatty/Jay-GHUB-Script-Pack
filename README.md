@@ -1,115 +1,68 @@
 <div align="center">
 
-![Jay's G HUB Script Pack — 78 operator templates with neutral defaults](assets/banner.svg)
+![Jay's G HUB Script Pack](assets/banner.svg)
 
 # Jay's G HUB Script Pack
 
-**A Windows installer for 78 Rainbow Six Siege operator Lua templates in Logitech G HUB.**
+**78 Siege operators. One installer. Your own tuning.**
 
-Keep your scripts organized. Preserve existing tuning. Start with your own calibration.
+Named Lua templates for Logitech G HUB, with automatic backups and an uninstall that preserves your edits.
 
-[![Windows validation](https://github.com/contactjayclatty/Jay-GHUB-Script-Pack/actions/workflows/validate.yml/badge.svg?branch=main)](https://github.com/contactjayclatty/Jay-GHUB-Script-Pack/actions/workflows/validate.yml)
-![Operators: 78](https://img.shields.io/badge/operators-78-f3c84b)
-![Defaults: zero movement](https://img.shields.io/badge/defaults-zero%20movement-78d9ea)
-![Platform: Windows](https://img.shields.io/badge/platform-Windows-8baac7)
+[![Download installer](https://img.shields.io/badge/DOWNLOAD-WINDOWS_INSTALLER-F3C84B?style=for-the-badge)](https://github.com/contactjayclatty/Jay-GHUB-Script-Pack/releases/download/v1.1.0/Jay-GHUB-Script-Pack-v1.1.0.exe)
+[![Get Windows ZIP](https://img.shields.io/badge/GET-WINDOWS_ZIP-23394B?style=for-the-badge)](https://github.com/contactjayclatty/Jay-GHUB-Script-Pack/releases/download/v1.1.0/Jay-GHUB-Script-Pack-v1.1.0-windows.zip)
 
-[Quick start](#quick-start) · [Configuration](#configure-your-script) · [All operators](#included-operators) · [Troubleshooting](#troubleshooting) · [Discussions](https://github.com/contactjayclatty/Jay-GHUB-Script-Pack/discussions)
+[![Release](https://img.shields.io/github/v/release/contactjayclatty/Jay-GHUB-Script-Pack?color=F3C84B&label=release)](https://github.com/contactjayclatty/Jay-GHUB-Script-Pack/releases/latest)
+[![Windows checks](https://github.com/contactjayclatty/Jay-GHUB-Script-Pack/actions/workflows/validate.yml/badge.svg?branch=main)](https://github.com/contactjayclatty/Jay-GHUB-Script-Pack/actions/workflows/validate.yml)
+[![Scan report](https://img.shields.io/badge/Defender-scan_report-78D9EA)](https://github.com/contactjayclatty/Jay-GHUB-Script-Pack/releases/download/v1.1.0/malware-scan-report.json)
+
+[Install](#install-in-three-steps) · [Configuration](docs/configuration.md) · [All operators](#operator-roster) · [Help](docs/setup.md#troubleshooting) · [Release notes](https://github.com/contactjayclatty/Jay-GHUB-Script-Pack/releases/tag/v1.1.0)
 
 </div>
 
-**[DOWNLOAD INSTALLER](https://github.com/contactjayclatty/Jay-GHUB-Script-Pack/releases/download/v1.1.0/Jay-GHUB-Script-Pack-v1.1.0.exe)** · **[WINDOWS ZIP](https://github.com/contactjayclatty/Jay-GHUB-Script-Pack/releases/download/v1.1.0/Jay-GHUB-Script-Pack-v1.1.0-windows.zip)** · [Release notes & checksums](https://github.com/contactjayclatty/Jay-GHUB-Script-Pack/releases/tag/v1.1.0)
+> **Starts at zero.** Every template ships with vertical and horizontal strengths set to `0`. Set your own values before expecting mouse movement. Operator names organize the pack; they are not pre-calibrated weapon profiles.
 
-> **Jay's project release, not a Ubisoft or Logitech product.** The exact release executable is checked with Microsoft Defender on an isolated Windows runner; the [scan report](https://github.com/contactjayclatty/Jay-GHUB-Script-Pack/releases/download/v1.1.0/malware-scan-report.json) records its SHA-256 hash, engine and signature versions. This is a single-engine scan, not a guarantee of safety. The executable remains unsigned, and discovery on another G HUB installation still needs testing.
+## Built around your existing setup
 
-## What you get
-
-| Organized installation | Existing work preserved | Easy to review |
+| 78 named templates | Existing scripts stay yours | Backups before installation |
 | :--- | :--- | :--- |
-| One named script per operator, in a unique G HUB folder. | Existing names are skipped; scripts are backed up before installation. | Lua templates, installer source, Windows CI and SHA-256 release checksums. |
+| A separate entry for each operator in G HUB. | Matching names and older aliases are skipped. | Current scripts are copied to a dated snapshot. |
 
-- **78 operator templates**, including Noor and Solid Snake, from Ubisoft's roster checked on **22 October 2026**.
-- **Neutral starting values:** both movement strengths are `0`. No personal calibration is shipped.
-- **Two basic tuning fields**, with advanced timing and controls clearly separated.
-- **Consistent controls:** burst-start counter resets, an idle pause, and a check that stops compensation when aim is released.
-- **Uninstall that preserves edits:** only unchanged files installed by this package are removed.
+Only two strength values sit in the basic configuration section. Advanced timing and controls are kept separate. Burst resets, idle pauses and aim-release checks are included in every template.
 
-These are configurable recoil-compensation templates. Operator names organize the files; they do **not** mean each script is calibrated for that operator's weapons. The installer does not activate a script, change Siege settings, or replace existing scripts.
+## Install in three steps
 
-## Quick start
+**1 · Close G HUB**
 
-### 1. Prepare G HUB
+Open G HUB at least once on this Windows account, then fully quit it from the system tray.
 
-Install and open **Logitech G HUB** at least once using the Windows account that will run the scripts. Then **fully quit G HUB from the system tray**.
+**2 · Install the pack**
 
-### 2. Run the installer
+Run [the installer](https://github.com/contactjayclatty/Jay-GHUB-Script-Pack/releases/download/v1.1.0/Jay-GHUB-Script-Pack-v1.1.0.exe) and choose **Install scripts**. It finds the current user's G HUB folder automatically. Existing operator names are skipped.
 
-Download the `.exe` or Windows ZIP from [the v1.1.0 release](https://github.com/contactjayclatty/Jay-GHUB-Script-Pack/releases/tag/v1.1.0). Compare the file hash with `SHA256SUMS.txt` and the attached Defender scan report if you want to verify the exact artifact.
+**3 · Select and configure**
 
-Run the installer and choose **Install scripts**. It targets the current Windows user's data automatically—no username edits or administrator access are required for the normal per-user install.
+Reopen G HUB, select the operator script in the Scripting editor for your profile, then set your strengths. The installer does not activate a script for you.
 
-### 3. Select and configure
+[Full setup guide →](docs/setup.md)
 
-Reopen G HUB, open the Scripting editor for the intended profile, and select the operator script. Configure the two strength values below. With the defaults unchanged, the script produces **no mouse movement**.
+## The installer
 
-**Runtime:** Windows PowerShell and .NET Framework. End users do not need Python or a .NET SDK. The executable is **unsigned** and application policies may block it.
+![Windows installer with Install scripts, Uninstall pack and Close controls](assets/installer-preview.png)
 
-## Configure your script
+*Rendered from the actual Windows Forms interface.*
 
-The basic section at the top of every template is:
+## Two values to configure
 
 ```lua
--- USER TUNING
 RcCustomStrength = 0       -- Downward movement per vertical step.
 HorizontalStrength = 0     -- Negative = left; positive = right.
 ```
 
-Your weapon, attachments, DPI and sensitivity affect calibration. There is no universal strength value, and this project does not claim measured recoil accuracy for all operators.
+Keep the advanced settings unchanged unless you understand their effect. Calibration depends on the weapon, attachments, DPI and sensitivity; there is no universal strength value.
 
-<details>
-<summary><strong>Advanced settings — normally leave these alone</strong></summary>
+[Configuration reference →](docs/configuration.md)
 
-| Setting | Default | Purpose |
-| :--- | :---: | :--- |
-| `EnableRCS` | `true` | Enables the logic; zero strengths still mean no movement. |
-| `RecoilControlMode` | `"Custom"` | Uses the strength entered in the basic section. |
-| `VerticalFrequency` | `2` | Vertical step every two firing-loop iterations. |
-| `HorizontalFrequency` | `4` | Horizontal step every four firing-loop iterations. |
-| `DelayRate` | `7` | Requested firing-loop sleep in milliseconds. Actual timing can vary. |
-| `RequireToggle` | `true` | Requires the configured lock key before entering the aim loop. |
-| `ToggleKey` | `"CapsLock"` | Lock key used for activation. |
-
-The two firing branches remain separate. Both counters reset at each burst. `Sleep(1)` runs while aiming without firing. The firing loop exits when fire or aim is released. Caps Lock is checked before entering the aim loop, not continuously while inside it.
-
-These are guidance comments, not locked settings. Changing timing changes how existing strength values behave.
-
-</details>
-
-## Installer preview
-
-![Tactical installer interface with Install scripts, Uninstall pack and Close buttons](assets/installer-preview.png)
-
-This is a local rendering of the real Windows Forms interface. It verifies layout, not another PC's G HUB discovery.
-
-## What gets installed?
-
-```text
-%LOCALAPPDATA%\LGHUB\
-├── scripts\
-│   ├── <unique operator ID>\
-│   │   ├── config.json     # Display name in G HUB
-│   │   └── script.lua      # Operator template
-│   └── ...
-└── script-pack-installs\
-    └── siege-operator-lua-pack-v1\
-        ├── installed.json # Ownership and hashes for uninstall
-        └── backups\
-            └── <timestamp>\
-                └── scripts\
-```
-
-**Already have scripts?** Matching names are skipped—even if the contents differ. Older names such as `Jager` and `Valk` are recognized as aliases for `Jäger` and `Valkyrie`. Unrelated scripts stay in place. Existing scripts are not automatically updated.
-
-## Included operators
+## Operator roster
 
 <!-- operators:begin -->
 <details>
@@ -147,45 +100,27 @@ This is a local rendering of the real Windows Forms interface. It verifies layou
 </details>
 <!-- operators:end -->
 
-Source: [Ubisoft's operator directory](https://www.ubisoft.com/en-us/game/rainbow-six/siege/game-info/operators), checked **22 October 2026**. The [catalog](payload/catalog.json) records names, aliases and hashes.
+Checked **22 October 2026** against [Ubisoft's operator directory](https://www.ubisoft.com/en-us/game/rainbow-six/siege/game-info/operators). Includes Noor and Solid Snake. [Names, aliases and hashes](payload/catalog.json) are recorded in the catalog.
 
-## Uninstall or recover
+## Backups and uninstall
 
-**Uninstall:** quit G HUB, run the installer again, and choose **Uninstall pack**. It removes unchanged scripts recorded as belonging to this package. Modified scripts, unrelated scripts and backup snapshots remain.
+Scripts install into `%LOCALAPPDATA%\LGHUB\scripts`, one UUID folder per operator. The Windows username does not need to be entered manually.
 
-**Recover:** with G HUB closed, copy the specific script folders you need from a snapshot's `scripts` directory back into `%LOCALAPPDATA%\LGHUB\scripts`. See [README.txt](README.txt) for the backup location and full instructions.
+To uninstall, quit G HUB and run the installer again. Only unchanged scripts installed by this pack are removed. Edited scripts, unrelated scripts and backup snapshots remain.
 
-## Troubleshooting
+[Folder structure and recovery →](docs/setup.md#backups-and-recovery)
 
-| What happens | What to check |
-| :--- | :--- |
-| Installer asks you to close G HUB | Quit its tray icon. If processes remain, close `lghub` and `lghub_agent` in Task Manager, then retry. |
-| G HUB user data is not found | Open G HUB once under the same Windows account, then fully quit it. |
-| An operator is skipped | A matching name or alias already exists and was left unchanged. |
-| The script loads but does nothing | Both strengths default to `0`. Check the selected profile and Caps Lock too. |
-| Scripts do not appear | Restart G HUB and check its Scripting editor. If still missing, report Windows/G HUB versions and the install result; cross-install discovery is still being validated. |
-| Uninstall leaves a script behind | Its files or folder contents changed. It was preserved to protect your edits. |
+## Download verification
 
-[Report an installation bug](https://github.com/contactjayclatty/Jay-GHUB-Script-Pack/issues/new?template=bug_report.yml) · [Ask a setup question](https://github.com/contactjayclatty/Jay-GHUB-Script-Pack/discussions)
+The published v1.1.0 executable and extracted payload were scanned by **Microsoft Defender: no threats detected**. The report identifies the exact executable hash, signature versions and scan time.
 
-## Verified behavior and remaining checks
+[Scan report](https://github.com/contactjayclatty/Jay-GHUB-Script-Pack/releases/download/v1.1.0/malware-scan-report.json) · [SHA-256 checksums](https://github.com/contactjayclatty/Jay-GHUB-Script-Pack/releases/download/v1.1.0/SHA256SUMS.txt) · [Windows build and scan](https://github.com/contactjayclatty/Jay-GHUB-Script-Pack/actions/runs/39654561259)
 
-| Check | Evidence |
-| :--- | :--- |
-| Fresh and repeat installation | Automated tests |
-| Existing-name, alias and Unicode handling | Automated tests |
-| Backup retention and preservation of edited scripts | Automated tests |
-| Ownership-aware uninstall and corrupt-payload rejection | Automated tests |
-| Payload hashes and Windows executable build | Windows CI |
-| Exact release executable and extracted payload malware scan | Microsoft Defender report attached to the release |
-| Lua syntax for all 78 templates | Checked locally |
-| Installer UI and discovery on another G HUB install | **Still needs testing** |
+The executable is **unsigned**. A single-engine scan is not a safety guarantee. Installer tests pass in isolated folders; discovery on other G HUB installations is still being verified. See [testing](docs/testing.md) for the exact scope.
 
-See [test scope and manual test steps](docs/testing.md). A passing build does not guarantee compatibility with every G HUB version.
+## Build it yourself
 
-## Build from source
-
-On Windows, install **Git** and **Python 3** for development. Building uses Windows PowerShell and the .NET Framework C# compiler.
+Windows development requirements: Git, Python 3, Windows PowerShell and the .NET Framework C# compiler. End users do not need Python or a .NET SDK.
 
 ```powershell
 git clone https://github.com/contactjayclatty/Jay-GHUB-Script-Pack.git
@@ -194,16 +129,18 @@ python test_installer.py
 powershell -NoProfile -ExecutionPolicy Bypass -File .\build.ps1
 ```
 
-The executable is written to `dist/`. Tests use temporary project folders and do not modify live G HUB scripts. Building uses the committed payload and does not read your personal scripts.
+The executable is written to `dist/`. Tests use isolated directories and leave live G HUB scripts alone.
 
-To regenerate templates, see [maintainer architecture](docs/architecture.md). Generation additionally needs the Lua compiler, with its developer tool path configured for your machine.
+[Developer guide](docs/architecture.md) · [Contributing](CONTRIBUTING.md) · [Changelog](CHANGELOG.md)
 
-## Help improve the pack
+## Questions, bugs and ideas
 
-The most useful contributions right now are **real installation reports**: Windows version, G HUB version, whether names appear correctly, and whether edited scripts survive uninstall. See [the roadmap](docs/roadmap.md) and [contribution guide](CONTRIBUTING.md).
+[Discussions](https://github.com/contactjayclatty/Jay-GHUB-Script-Pack/discussions) are for setup questions and ideas. For a reproducible problem, use the [bug report form](https://github.com/contactjayclatty/Jay-GHUB-Script-Pack/issues/new?template=bug_report.yml).
 
-Use **Issues** for reproducible bugs and **Discussions** for setup questions and ideas. If the project saves you time, a star helps you keep track of it and shows Jay that it is useful.
+The most helpful reports include Windows and G HUB versions, the install result, and whether edited scripts survive uninstall. See [what's next](docs/roadmap.md).
+
+**Finding it useful? [Star the repo](https://github.com/contactjayclatty/Jay-GHUB-Script-Pack) so you can find it again.**
 
 ---
 
-Made by **[Jay](https://github.com/contactjayclatty)**. Independent of Logitech and Ubisoft; names identify compatibility and the roster. No source license grant is included pending the owner's licensing decision.
+[Jay](https://github.com/contactjayclatty) · Independent project. Not affiliated with Ubisoft or Logitech. No source license grant is included; public visibility alone does not grant reuse rights.
