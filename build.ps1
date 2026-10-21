@@ -1,4 +1,4 @@
-param([string]$Version = '1.1.0')
+param([string]$Version = '1.2.0')
 $ErrorActionPreference = 'Stop'
 $root = $PSScriptRoot
 $dist = Join-Path $root 'dist'
@@ -20,6 +20,7 @@ $zip = [IO.Compression.ZipFile]::Open($package, [IO.Compression.ZipArchiveMode]:
 try {
     [IO.Compression.ZipFileExtensions]::CreateEntryFromFile($zip,(Join-Path $root 'Installer.ps1'),'Installer.ps1') | Out-Null
     [IO.Compression.ZipFileExtensions]::CreateEntryFromFile($zip,(Join-Path $root 'assets\app.ico'),'app.ico') | Out-Null
+    [IO.Compression.ZipFileExtensions]::CreateEntryFromFile($zip,(Join-Path $root 'LICENSE'),'LICENSE') | Out-Null
     foreach ($file in (Get-ChildItem -LiteralPath (Join-Path $root 'payload') -File)) {
         [IO.Compression.ZipFileExtensions]::CreateEntryFromFile($zip,$file.FullName,('payload/' + $file.Name)) | Out-Null
     }
@@ -27,9 +28,10 @@ try {
 $compiler = Join-Path $env:WINDIR 'Microsoft.NET\Framework64\v4.0.30319\csc.exe'
 if (-not (Test-Path -LiteralPath $compiler)) { throw '.NET Framework C# compiler not found.' }
 $exe = Join-Path $dist ('Jay-GHUB-Script-Pack-v' + $Version + '.exe')
-& $compiler /nologo /target:winexe /optimize+ /reference:System.Windows.Forms.dll /reference:System.IO.Compression.dll /reference:System.IO.Compression.FileSystem.dll ('/win32icon:' + (Join-Path $root 'assets\app.ico')) ('/resource:' + $package + ',package.zip') ('/out:' + $exe) (Join-Path $root 'Launcher.cs')
+& $compiler /nologo /target:winexe /optimize+ /reference:System.Windows.Forms.dll /reference:System.IO.Compression.dll /reference:System.IO.Compression.FileSystem.dll ('/win32icon:' + (Join-Path $root 'assets\app.ico')) ('/resource:' + $package + ',package.zip') ('/out:' + $exe) (Join-Path $root 'Launcher.cs') (Join-Path $root 'AssemblyInfo.cs')
 if ($LASTEXITCODE -ne 0) { throw 'Compiler failed.' }
 Copy-Item -LiteralPath (Join-Path $root 'README.txt') -Destination $dist -Force
 Copy-Item -LiteralPath (Join-Path $root 'OPERATORS.txt') -Destination $dist -Force
+Copy-Item -LiteralPath (Join-Path $root 'LICENSE') -Destination $dist -Force
 Remove-Item -LiteralPath $package
 Write-Output $exe

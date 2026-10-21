@@ -2,7 +2,10 @@ param(
     [ValidateSet('UI','Install','Uninstall')][string]$Action = 'UI',
     [string]$TargetRoot = (Join-Path $env:LOCALAPPDATA 'LGHUB'),
     [switch]$TestMode,
-    [string]$RenderPreview
+    [string]$RenderPreview,
+    [string]$Operators = '*',
+    [string]$PreviewStatus,
+    [string]$PreviewFilter
 )
 $ErrorActionPreference = 'Stop'
 $packId = 'siege-operator-lua-pack-v1'
@@ -38,7 +41,21 @@ function Resolve-OwnedFolder([string]$Id) {
     if (-not [guid]::TryParse($Id, [ref]$guid)) { throw 'Invalid folder ID in install manifest.' }
     Join-Path $scriptsRoot $guid.ToString()
 }
+function Get-SelectedScripts([string]$Selection) {
+    if ($Selection.Trim() -eq '*') { return @($catalog.scripts) }
+    $tokens=@($Selection.Split(',') | ForEach-Object { $_.Trim() } | Where-Object { $_ })
+    if ($tokens.Count -eq 0) { throw 'Select at least one operator before installing.' }
+    $names=@{}
+    foreach ($token in $tokens) {
+        $matches=@($catalog.scripts | Where-Object { $_.name -eq $token -or @($_.aliases) -contains $token })
+        if ($matches.Count -ne 1) { throw ('Unknown operator: ' + $token) }
+        $names[$matches[0].name]=$true
+    }
+    @($catalog.scripts | Where-Object { $names.ContainsKey($_.name) })
+}
 function Install-Pack {
+    param([string]$Selection=$Operators)
+    $selectedScripts=@(Get-SelectedScripts $Selection)
     Assert-Ready
     # Validate every bundled script before making any change to user data.
     foreach ($item in $catalog.scripts) {
@@ -72,7 +89,7 @@ function Install-Pack {
     $added = @()
     $skipped = @()
     try {
-        foreach ($item in $catalog.scripts) {
+        foreach ($item in $selectedScripts) {
             if (@(@($item.name) + @($item.aliases) | Where-Object { $existingNames -contains $_ }).Count -gt 0) { $skipped += $item.name; continue }
             $id = [guid]::NewGuid().ToString()
             $folder = Resolve-OwnedFolder $id
@@ -129,18 +146,18 @@ if ($Action -eq 'Uninstall') { Uninstall-Pack; exit }
 Add-Type -AssemblyName System.Windows.Forms
 Add-Type -AssemblyName System.Drawing
 [Windows.Forms.Application]::EnableVisualStyles()
-$form = New-Object Windows.Forms.Form
-$form.Text = "Jay's G HUB Script Pack"
-$form.ClientSize = New-Object Drawing.Size(700,530)
-$form.BackColor = [Drawing.ColorTranslator]::FromHtml('#0D141D')
-$form.ForeColor = [Drawing.ColorTranslator]::FromHtml('#EDF3F7')
-$form.Font = New-Object Drawing.Font('Segoe UI',10)
-$form.StartPosition = 'CenterScreen'
-$form.FormBorderStyle = 'FixedDialog'
-$form.MaximizeBox = $false
+$form=New-Object Windows.Forms.Form
+$form.Text="Jay's G HUB Script Pack"
+$form.ClientSize=New-Object Drawing.Size(760,720)
+$form.BackColor=[Drawing.ColorTranslator]::FromHtml('#0D141D')
+$form.ForeColor=[Drawing.ColorTranslator]::FromHtml('#EDF3F7')
+$form.Font=New-Object Drawing.Font('Segoe UI',10)
+$form.StartPosition='CenterScreen'
+$form.FormBorderStyle='FixedDialog'
+$form.MaximizeBox=$false
 $iconPath=Join-Path $PSScriptRoot 'app.ico'
 if (-not (Test-Path -LiteralPath $iconPath)) { $iconPath=Join-Path $PSScriptRoot 'assets\app.ico' }
-if (Test-Path -LiteralPath $iconPath) { $form.Icon = New-Object Drawing.Icon($iconPath) }
+if (Test-Path -LiteralPath $iconPath) { $form.Icon=New-Object Drawing.Icon($iconPath) }
 function Add-Text([string]$Text,[int]$X,[int]$Y,[int]$Width,[int]$Height,[int]$Size,[string]$Color,[bool]$Bold=$false) {
     $label=New-Object Windows.Forms.Label
     $label.Text=$Text
@@ -152,46 +169,127 @@ function Add-Text([string]$Text,[int]$X,[int]$Y,[int]$Width,[int]$Height,[int]$S
     $label.ForeColor=[Drawing.ColorTranslator]::FromHtml($Color)
     $form.Controls.Add($label)
 }
-$stripe=New-Object Windows.Forms.Panel
-$stripe.Location=New-Object Drawing.Point(0,0)
-$stripe.Size=New-Object Drawing.Size(700,5)
-$stripe.BackColor=[Drawing.ColorTranslator]::FromHtml('#F3C84B')
-$form.Controls.Add($stripe)
-Add-Text 'JAY // OPERATOR TOOLS' 30 26 520 25 11 '#F3C84B' $true
-Add-Text 'G HUB SCRIPT PACK' 27 61 560 52 27 '#EDF3F7' $true
-Add-Text "$(@($catalog.scripts).Count) OPERATORS / WINDOWS / v$($catalog.version)" 30 121 630 26 11 '#78D9EA' $true
-Add-Text '01  BACK UP     /     02  INSTALL     /     03  CONFIGURE' 30 171 640 28 11 '#EDF3F7' $true
-Add-Text "Named Lua templates for your G HUB profiles. Existing names are skipped; a snapshot protects the scripts you already have." 30 214 640 56 11 '#B5C4D0'
-Add-Text 'NEUTRAL DEFAULTS // VERTICAL 0 / HORIZONTAL 0' 30 287 640 27 11 '#F3C84B' $true
-Add-Text 'Calibrate the two strengths before use. Advanced timing and controls are preserved. These templates are not operator-tuned recoil profiles.' 30 322 640 54 10 '#B5C4D0'
-Add-Text 'BEFORE YOU START: FULLY QUIT G HUB FROM THE TRAY.' 30 391 640 25 10 '#EDF3F7' $true
-Add-Text 'Independent project by Jay. Not endorsed by Ubisoft or Logitech.' 30 494 640 22 8 '#7D92A4'
-$install = New-Object Windows.Forms.Button
-$install.Text = 'INSTALL SCRIPTS'
-$install.Location = New-Object Drawing.Point(30,436)
-$install.Size = New-Object Drawing.Size(235,42)
-$install.BackColor=[Drawing.ColorTranslator]::FromHtml('#F3C84B')
-$install.ForeColor=[Drawing.ColorTranslator]::FromHtml('#0D141D')
-$uninstall = New-Object Windows.Forms.Button
-$uninstall.Text = 'UNINSTALL PACK'
-$uninstall.Location = New-Object Drawing.Point(279,436)
-$uninstall.Size = New-Object Drawing.Size(235,42)
-$uninstall.BackColor=[Drawing.ColorTranslator]::FromHtml('#1C2C3B')
-$close = New-Object Windows.Forms.Button
-$close.Text = 'CLOSE'
-$close.Location = New-Object Drawing.Point(528,436)
-$close.Size = New-Object Drawing.Size(142,42)
-$close.BackColor=[Drawing.ColorTranslator]::FromHtml('#1C2C3B')
-foreach ($button in @($install,$uninstall,$close)) {
+function New-Button([string]$Text,[int]$X,[int]$Y,[int]$Width,[int]$Height,[bool]$Primary=$false) {
+    $button=New-Object Windows.Forms.Button
+    $button.Text=$Text
+    $button.Location=New-Object Drawing.Point($X,$Y)
+    $button.Size=New-Object Drawing.Size($Width,$Height)
     $button.FlatStyle=[Windows.Forms.FlatStyle]::Flat
     $button.FlatAppearance.BorderSize=0
     $button.Font=New-Object Drawing.Font('Segoe UI',10,[Drawing.FontStyle]::Bold)
     $button.Cursor=[Windows.Forms.Cursors]::Hand
+    $button.BackColor=[Drawing.ColorTranslator]::FromHtml('#1C2C3B')
+    if ($Primary) {
+        $button.BackColor=[Drawing.ColorTranslator]::FromHtml('#F3C84B')
+        $button.ForeColor=[Drawing.ColorTranslator]::FromHtml('#0D141D')
+    }
+    $button
 }
-$install.Add_Click({ try { $install.Enabled=$false; $uninstall.Enabled=$false; $msg=Install-Pack; [Windows.Forms.MessageBox]::Show($msg,'Installation complete') | Out-Null } catch { [Windows.Forms.MessageBox]::Show($_.Exception.Message,'Installation stopped') | Out-Null } finally { $install.Enabled=$true; $uninstall.Enabled=$true } })
-$uninstall.Add_Click({ try { $install.Enabled=$false; $uninstall.Enabled=$false; $msg=Uninstall-Pack; [Windows.Forms.MessageBox]::Show($msg,'Uninstall complete') | Out-Null } catch { [Windows.Forms.MessageBox]::Show($_.Exception.Message,'Uninstall stopped') | Out-Null } finally { $install.Enabled=$true; $uninstall.Enabled=$true } })
-$close.Add_Click({ $form.Close() })
+$stripe=New-Object Windows.Forms.Panel
+$stripe.Location=New-Object Drawing.Point(0,0)
+$stripe.Size=New-Object Drawing.Size(760,5)
+$stripe.BackColor=[Drawing.ColorTranslator]::FromHtml('#F3C84B')
+$form.Controls.Add($stripe)
+Add-Text 'JAY // OPERATOR TOOLS' 30 23 650 24 11 '#F3C84B' $true
+Add-Text 'CHOOSE YOUR OPERATORS' 26 57 710 48 25 '#EDF3F7' $true
+Add-Text "G HUB SCRIPT PACK / v$($catalog.version) / $(@($catalog.scripts).Count) TEMPLATES" 30 113 700 25 11 '#78D9EA' $true
+Add-Text 'Install a few or the full roster. Existing names and tuning are preserved.' 30 151 700 28 10 '#B5C4D0'
+$search=New-Object Windows.Forms.TextBox
+$search.Location=New-Object Drawing.Point(30,198)
+$search.Size=New-Object Drawing.Size(425,30)
+$search.BackColor=[Drawing.ColorTranslator]::FromHtml('#152331')
+$search.ForeColor=$form.ForeColor
+$search.BorderStyle='FixedSingle'
+$search.AccessibleName='Search operators'
+Add-Text 'SEARCH OPERATORS' 30 179 425 18 8 '#7D92A4' $true
+$form.Controls.Add($search)
+$all=New-Button 'SELECT ALL' 470 196 130 32
+$none=New-Button 'CLEAR' 612 196 118 32
+$form.Controls.AddRange(@($all,$none))
+$list=New-Object Windows.Forms.CheckedListBox
+$list.Location=New-Object Drawing.Point(30,246)
+$list.Size=New-Object Drawing.Size(700,200)
+$list.BackColor=[Drawing.ColorTranslator]::FromHtml('#152331')
+$list.ForeColor=$form.ForeColor
+$list.BorderStyle='FixedSingle'
+$list.CheckOnClick=$true
+$list.IntegralHeight=$false
+$list.Font=New-Object Drawing.Font('Segoe UI',11)
+$list.AccessibleName='Operators to install'
+$form.Controls.Add($list)
+$summary=New-Object Windows.Forms.Label
+$summary.Location=New-Object Drawing.Point(30,458)
+$summary.Size=New-Object Drawing.Size(700,25)
+$summary.ForeColor=[Drawing.ColorTranslator]::FromHtml('#78D9EA')
+$summary.Font=New-Object Drawing.Font('Segoe UI',11,[Drawing.FontStyle]::Bold)
+$form.Controls.Add($summary)
+Add-Text 'NEUTRAL VALUES // VERTICAL 0 / HORIZONTAL 0' 30 499 700 23 10 '#F3C84B' $true
+Add-Text 'Selection applies to installation only. Uninstall checks every script owned by this pack and preserves edited files. Fully quit G HUB before continuing.' 30 531 700 47 10 '#B5C4D0'
+$statusLabel=New-Object Windows.Forms.Label
+$statusLabel.Location=New-Object Drawing.Point(30,584)
+$statusLabel.Size=New-Object Drawing.Size(700,39)
+$statusLabel.ForeColor=[Drawing.ColorTranslator]::FromHtml('#78D9EA')
+$statusLabel.Font=New-Object Drawing.Font('Segoe UI',9)
+$statusLabel.Text='Snapshots are saved before installation. Calibrate each script after selecting it in G HUB.'
+if ($PreviewStatus) { $statusLabel.Text=$PreviewStatus }
+$form.Controls.Add($statusLabel)
+$install=New-Button 'INSTALL SELECTED' 30 630 270 43 $true
+$uninstall=New-Button 'UNINSTALL PACK' 314 630 240 43
+$close=New-Button 'CLOSE' 568 630 162 43
 $form.Controls.AddRange(@($install,$uninstall,$close))
+Add-Text 'Independent project by Jay. Not endorsed by Ubisoft or Logitech.' 30 689 700 22 8 '#7D92A4'
+$script:selection=@{}
+foreach ($item in @(Get-SelectedScripts $Operators)) { $script:selection[$item.name]=$true }
+$script:rebuilding=$false
+function Update-SelectionSummary {
+    $summary.Text="$($script:selection.Count) OF $(@($catalog.scripts).Count) SELECTED  /  $($list.Items.Count) SHOWN"
+    $install.Enabled=$script:selection.Count -gt 0
+}
+function Refresh-OperatorList {
+    $script:rebuilding=$true
+    $list.BeginUpdate()
+    try {
+        $list.Items.Clear()
+        foreach ($item in @($catalog.scripts | Sort-Object name)) {
+            $visible=$item.name.IndexOf($search.Text,[StringComparison]::OrdinalIgnoreCase) -ge 0
+            if (-not $visible) { $visible=@($item.aliases | Where-Object { $_.IndexOf($search.Text,[StringComparison]::OrdinalIgnoreCase) -ge 0 }).Count -gt 0 }
+            if ($visible) { [void]$list.Items.Add($item.name,$script:selection.ContainsKey($item.name)) }
+        }
+    } finally { $list.EndUpdate();$script:rebuilding=$false }
+    Update-SelectionSummary
+}
+$list.Add_ItemCheck({
+    param($sender,$eventArgs)
+    if ($script:rebuilding) { return }
+    $name=$sender.Items[$eventArgs.Index].ToString()
+    if ($eventArgs.NewValue -eq [Windows.Forms.CheckState]::Checked) { $script:selection[$name]=$true }
+    else { $script:selection.Remove($name) }
+    Update-SelectionSummary
+})
+$search.Add_TextChanged({Refresh-OperatorList})
+$all.Add_Click({foreach ($item in $catalog.scripts) {$script:selection[$item.name]=$true};Refresh-OperatorList})
+$none.Add_Click({$script:selection.Clear();Refresh-OperatorList})
+$install.Add_Click({
+    try {
+        $install.Enabled=$false;$uninstall.Enabled=$false
+        $msg=Install-Pack -Selection (($script:selection.Keys | Sort-Object) -join ',')
+        $statusLabel.Text=($msg -split "`r?`n")[0]
+        [Windows.Forms.MessageBox]::Show($msg,'Installation complete') | Out-Null
+    } catch { [Windows.Forms.MessageBox]::Show($_.Exception.Message,'Installation stopped') | Out-Null }
+    finally {Update-SelectionSummary;$uninstall.Enabled=$true}
+})
+$uninstall.Add_Click({
+    try {
+        $install.Enabled=$false;$uninstall.Enabled=$false
+        $msg=Uninstall-Pack
+        $statusLabel.Text=$msg
+        [Windows.Forms.MessageBox]::Show($msg,'Uninstall complete') | Out-Null
+    } catch { [Windows.Forms.MessageBox]::Show($_.Exception.Message,'Uninstall stopped') | Out-Null }
+    finally {Update-SelectionSummary;$uninstall.Enabled=$true}
+})
+$close.Add_Click({$form.Close()})
+Refresh-OperatorList
+if ($RenderPreview -and $PreviewFilter) { $search.Text=$PreviewFilter }
 if ($RenderPreview) {
     $form.ShowInTaskbar=$false
     $form.StartPosition='Manual'
@@ -200,8 +298,8 @@ if ($RenderPreview) {
     [Windows.Forms.Application]::DoEvents()
     $form.Refresh()
     $bitmap=New-Object Drawing.Bitmap($form.Width,$form.Height)
-    try { $form.DrawToBitmap($bitmap,(New-Object Drawing.Rectangle(0,0,$form.Width,$form.Height))); $bitmap.Save([IO.Path]::GetFullPath($RenderPreview),[Drawing.Imaging.ImageFormat]::Png) }
-    finally { $bitmap.Dispose(); $form.Dispose() }
+    try {$form.DrawToBitmap($bitmap,(New-Object Drawing.Rectangle(0,0,$form.Width,$form.Height)));$bitmap.Save([IO.Path]::GetFullPath($RenderPreview),[Drawing.Imaging.ImageFormat]::Png)}
+    finally {$bitmap.Dispose();$form.Dispose()}
     exit
 }
 [void]$form.ShowDialog()

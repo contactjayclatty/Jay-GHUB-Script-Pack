@@ -27,6 +27,6 @@ After changing the roster, refresh its README block with `python check_docs.py -
 
 Preserve zero distribution strengths, separate firing branches and existing control behavior unless a behavior change is agreed. Never weaken payload hashes, ownership checks, name protection or edited-file preservation. Test against isolated directories, never live scripts.
 
-Do not submit personal calibration, backups, account identifiers or third-party material without permission. Licensing is undecided; public access does not imply unrestricted reuse.
+Do not submit personal calibration, backups, account identifiers or third-party material without permission. Project contributions are under the [MIT license](LICENSE).
 
 [Developer guide](docs/architecture.md) · [Design choices](docs/decisions.md) · [Roadmap](docs/roadmap.md)

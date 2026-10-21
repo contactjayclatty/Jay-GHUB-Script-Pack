@@ -54,12 +54,12 @@ for p in payload.iterdir():
 catalog = []
 for index,name in enumerate(names):
     filename = f'operator-{index+1:02d}.lua'
-    data = (f'-- Operator: {name}\n-- Script pack 1.1.0; roster checked 2026-10-22.\n\n'+settings+body).replace('\r\n','\n').encode('utf-8')
+    data = (f'-- SPDX-License-Identifier: MIT\n-- Operator: {name}\n-- Script pack 1.2.0; roster checked 2026-10-22.\n\n'+settings+body).replace('\r\n','\n').encode('utf-8')
     p = payload/filename
     data = ('\n'.join(line.rstrip() for line in data.decode('utf-8').splitlines()).rstrip()+'\n').encode('utf-8')
     p.write_bytes(data)
     result = subprocess.run([r'C:\Program Files (x86)\Lua\5.1\luac.exe','-p',str(p)],capture_output=True,text=True)
     assert result.returncode == 0,result.stderr
     catalog.append({'name':name,'aliases':aliases.get(name,[]),'file':filename,'sha256':hashlib.sha256(data).hexdigest()})
-(payload/'catalog.json').write_text(json.dumps({'version':'1.1.0','rosterVerified':'2026-10-22','rosterSource':'https://www.ubisoft.com/en-us/game/rainbow-six/siege/game-info/operators','defaults':{'RcCustomStrength':0,'HorizontalStrength':0,'VerticalFrequency':2,'HorizontalFrequency':4,'DelayRate':7},'scripts':catalog},indent=2,ensure_ascii=False),encoding='utf-8')
+(payload/'catalog.json').write_text(json.dumps({'version':'1.2.0','rosterVerified':'2026-10-22','rosterSource':'https://www.ubisoft.com/en-us/game/rainbow-six/siege/game-info/operators','defaults':{'RcCustomStrength':0,'HorizontalStrength':0,'VerticalFrequency':2,'HorizontalFrequency':4,'DelayRate':7},'scripts':catalog},indent=2,ensure_ascii=False),encoding='utf-8')
 print('78 neutral templates generated; Lua syntax checked. Live G HUB scripts unchanged.')

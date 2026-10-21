@@ -1,14 +1,15 @@
 # Changelog
 
-## Unreleased
+## 1.2.0 — 22 October 2026
 
-### Documentation
+- Added a searchable operator checklist, Select All, Clear and selected counts.
+- Added subset/alias validation and tests for incremental installations.
+- Adopted the MIT license and included it in distribution packages.
+- Added executable version metadata and an isolated-folder installer demo.
+- Recorded the maintainer's report of successful installation on another PC.
+- Refreshed the release page and documentation.
 
-- Reorganized setup, configuration, recovery and developer instructions.
-- Simplified the README, download links and release verification information.
-- Removed internal tooling and process scaffolding from the current repository.
-
-No installer or Lua behavior changed in this documentation update.
+The executable remains unsigned; no suitable public signing certificate was available. Neutral tuning and firing behavior are unchanged.
 
 ## 1.1.0 — 22 October 2026
 

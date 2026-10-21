@@ -43,3 +43,11 @@ The Windows Forms interface uses original project artwork. Preview it without in
 CI builds on Windows, enables Defender only on its temporary runner, scans the executable plus extracted scripts and uploads a report. Use that exact binary for release. There is no hosted backend, runtime script downloader or embedded credential.
 
 [Tests](testing.md) · [Release checklist](releasing.md)
+
+## Selection and previews
+
+The checklist keeps selected canonical names separately from the filtered display. The engine accepts `-Operators "Doc,Ash"` (default `*`) for isolated tests and resolves known aliases. Selection is validated before creating snapshots or files. Existing ownership records are merged for later installs.
+
+The optional `make_demo.py` tool needs Pillow and renders the real form while validating a two-operator install/uninstall against a generated test folder. Its GIF is labelled as a test-folder demonstration.
+
+The executable includes product/file version metadata. No publicly trusted code-signing certificate was available for this release, so it remains unsigned. The unrelated development certificate is not used.

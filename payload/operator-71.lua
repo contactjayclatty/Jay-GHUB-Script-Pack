@@ -1,5 +1,6 @@
+-- SPDX-License-Identifier: MIT
 -- Operator: Jäger
--- Script pack 1.1.0; roster checked 2026-10-22.
+-- Script pack 1.2.0; roster checked 2026-10-22.
 
 -- NEUTRAL STARTING VALUES: these are not operator-specific recoil presets.
 -- USER TUNING: adjust these two values after testing your weapon and sensitivity.

@@ -6,16 +6,17 @@
 
 **78 Siege operators. One installer. Your own tuning.**
 
-Named Lua templates for Logitech G HUB, with automatic backups and an uninstall that preserves your edits.
+Choose the operators you want. Install their Lua templates into Logitech G HUB with backups and edit-preserving uninstall.
 
-[![Download installer](https://img.shields.io/badge/DOWNLOAD-WINDOWS_INSTALLER-F3C84B?style=for-the-badge)](https://github.com/contactjayclatty/Jay-GHUB-Script-Pack/releases/download/v1.1.0/Jay-GHUB-Script-Pack-v1.1.0.exe)
-[![Get Windows ZIP](https://img.shields.io/badge/GET-WINDOWS_ZIP-23394B?style=for-the-badge)](https://github.com/contactjayclatty/Jay-GHUB-Script-Pack/releases/download/v1.1.0/Jay-GHUB-Script-Pack-v1.1.0-windows.zip)
+[![Download installer](https://img.shields.io/badge/DOWNLOAD-WINDOWS_INSTALLER-F3C84B?style=for-the-badge)](https://github.com/contactjayclatty/Jay-GHUB-Script-Pack/releases/download/v1.2.0/Jay-GHUB-Script-Pack-v1.2.0.exe)
+[![Get Windows ZIP](https://img.shields.io/badge/GET-WINDOWS_ZIP-23394B?style=for-the-badge)](https://github.com/contactjayclatty/Jay-GHUB-Script-Pack/releases/download/v1.2.0/Jay-GHUB-Script-Pack-v1.2.0-windows.zip)
 
 [![Release](https://img.shields.io/github/v/release/contactjayclatty/Jay-GHUB-Script-Pack?color=F3C84B&label=release)](https://github.com/contactjayclatty/Jay-GHUB-Script-Pack/releases/latest)
 [![Windows checks](https://github.com/contactjayclatty/Jay-GHUB-Script-Pack/actions/workflows/validate.yml/badge.svg?branch=main)](https://github.com/contactjayclatty/Jay-GHUB-Script-Pack/actions/workflows/validate.yml)
-[![Scan report](https://img.shields.io/badge/Defender-scan_report-78D9EA)](https://github.com/contactjayclatty/Jay-GHUB-Script-Pack/releases/download/v1.1.0/malware-scan-report.json)
+[![MIT license](https://img.shields.io/badge/license-MIT-78D9EA)](LICENSE)
+[![Scan report](https://img.shields.io/badge/Defender-scan_report-78D9EA)](https://github.com/contactjayclatty/Jay-GHUB-Script-Pack/releases/download/v1.2.0/malware-scan-report.json)
 
-[Install](#install-in-three-steps) · [Configuration](docs/configuration.md) · [All operators](#operator-roster) · [Help](docs/setup.md#troubleshooting) · [Release notes](https://github.com/contactjayclatty/Jay-GHUB-Script-Pack/releases/tag/v1.1.0)
+[Install](#install-in-three-steps) · [Configuration](docs/configuration.md) · [All operators](#operator-roster) · [Help](docs/setup.md#troubleshooting) · [Release notes](https://github.com/contactjayclatty/Jay-GHUB-Script-Pack/releases/tag/v1.2.0)
 
 </div>
 
@@ -35,9 +36,9 @@ Only two strength values sit in the basic configuration section. Advanced timing
 
 Open G HUB at least once on this Windows account, then fully quit it from the system tray.
 
-**2 · Install the pack**
+**2 · Choose your operators**
 
-Run [the installer](https://github.com/contactjayclatty/Jay-GHUB-Script-Pack/releases/download/v1.1.0/Jay-GHUB-Script-Pack-v1.1.0.exe) and choose **Install scripts**. It finds the current user's G HUB folder automatically. Existing operator names are skipped.
+Run [the installer](https://github.com/contactjayclatty/Jay-GHUB-Script-Pack/releases/download/v1.2.0/Jay-GHUB-Script-Pack-v1.2.0.exe) and check the operators you want. Use search, **Select All** or **Clear**, then choose **Install selected**. It finds the current user's G HUB folder automatically. Existing operator names are skipped.
 
 **3 · Select and configure**
 
@@ -47,9 +48,9 @@ Reopen G HUB, select the operator script in the Scripting editor for your profil
 
 ## The installer
 
-![Windows installer with Install scripts, Uninstall pack and Close controls](assets/installer-preview.png)
+![Selective installer demo](assets/installer-demo.gif)
 
-*Rendered from the actual Windows Forms interface.*
+*Real Windows Forms UI and real install/uninstall results in an isolated test folder. This is not a recording of G HUB.*
 
 ## Two values to configure
 
@@ -112,11 +113,11 @@ To uninstall, quit G HUB and run the installer again. Only unchanged scripts ins
 
 ## Download verification
 
-The published v1.1.0 executable and extracted payload were scanned by **Microsoft Defender: no threats detected**. The report identifies the exact executable hash, signature versions and scan time.
+The published v1.2.0 executable and extracted payload were scanned by **Microsoft Defender: no threats detected**. The report identifies the exact executable hash, signature versions and scan time.
 
-[Scan report](https://github.com/contactjayclatty/Jay-GHUB-Script-Pack/releases/download/v1.1.0/malware-scan-report.json) · [SHA-256 checksums](https://github.com/contactjayclatty/Jay-GHUB-Script-Pack/releases/download/v1.1.0/SHA256SUMS.txt) · [Windows build and scan](https://github.com/contactjayclatty/Jay-GHUB-Script-Pack/actions/runs/39654561259)
+[Scan report](https://github.com/contactjayclatty/Jay-GHUB-Script-Pack/releases/download/v1.2.0/malware-scan-report.json) · [SHA-256 checksums](https://github.com/contactjayclatty/Jay-GHUB-Script-Pack/releases/download/v1.2.0/SHA256SUMS.txt) · [Windows build and scan](https://github.com/contactjayclatty/Jay-GHUB-Script-Pack/actions/workflows/validate.yml)
 
-The executable is **unsigned**. A single-engine scan is not a safety guarantee. Installer tests pass in isolated folders; discovery on other G HUB installations is still being verified. See [testing](docs/testing.md) for the exact scope.
+The executable is **unsigned**. A single-engine scan is not a safety guarantee. Installer tests pass in isolated folders; installation on another PC has been confirmed by the maintainer. The Windows/G HUB versions were not recorded, and v1.2.0 selection still needs separate-PC testing. See [testing](docs/testing.md) for the exact scope.
 
 ## Build it yourself
 
@@ -137,10 +138,10 @@ The executable is written to `dist/`. Tests use isolated directories and leave l
 
 [Discussions](https://github.com/contactjayclatty/Jay-GHUB-Script-Pack/discussions) are for setup questions and ideas. For a reproducible problem, use the [bug report form](https://github.com/contactjayclatty/Jay-GHUB-Script-Pack/issues/new?template=bug_report.yml).
 
-The most helpful reports include Windows and G HUB versions, the install result, and whether edited scripts survive uninstall. See [what's next](docs/roadmap.md).
+The most helpful reports include Windows and G HUB versions, selected operators, the install result, and whether edited scripts survive uninstall. See [what's next](docs/roadmap.md).
 
 **Finding it useful? [Star the repo](https://github.com/contactjayclatty/Jay-GHUB-Script-Pack) so you can find it again.**
 
 ---
 
-[Jay](https://github.com/contactjayclatty) · Independent project. Not affiliated with Ubisoft or Logitech. No source license grant is included; public visibility alone does not grant reuse rights.
+[Jay](https://github.com/contactjayclatty) · Independent project. Not affiliated with Ubisoft or Logitech. [MIT licensed](LICENSE).

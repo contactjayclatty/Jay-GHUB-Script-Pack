@@ -16,8 +16,10 @@ for item in catalog['scripts']:
     assert text.count('until not IsMouseButtonPressed(1) or not IsMouseButtonPressed(3)') == 2
     assert text.count('Sleep(1)') == 2
 
-def run(action, root, expected=0):
-    result = subprocess.run([shell, '-NoProfile', '-ExecutionPolicy', 'Bypass', '-File', str(work/'Installer.ps1'), '-Action', action, '-TargetRoot', str(root), '-TestMode'], capture_output=True, text=True)
+def run(action, root, expected=0, operators=None):
+    command=[shell, '-NoProfile', '-ExecutionPolicy', 'Bypass', '-File', str(work/'Installer.ps1'), '-Action', action, '-TargetRoot', str(root), '-TestMode']
+    if operators is not None: command += ['-Operators',operators]
+    result = subprocess.run(command, capture_output=True, text=True)
     if result.returncode != expected:
         raise AssertionError(result.stdout + result.stderr)
     return result.stdout
@@ -73,3 +75,20 @@ result = subprocess.run([shell,'-NoProfile','-ExecutionPolicy','Bypass','-File',
 assert result.returncode != 0
 assert not bad_target.exists()
 print('PASS: corrupt payload rejected without modifying target.')
+
+# Selective installs must not add unrelated operators, and later installs merge ownership.
+selective=test_root/'selective'
+print(run('Install',selective,operators='Doc,Ash,Doc').splitlines()[0])
+selected_configs=list((selective/'scripts').glob('*/config.json'))
+assert {json.loads(p.read_text(encoding='utf-8'))['name'] for p in selected_configs}=={'Doc','Ash'}
+print(run('Install',selective,operators='Jager,Valk').splitlines()[0])
+manifest=json.loads((selective/'script-pack-installs'/'siege-operator-lua-pack-v1'/'installed.json').read_text(encoding='utf-8'))
+assert len(manifest['scripts'])==4
+assert {i['name'] for i in manifest['scripts']}=={'Doc','Ash','J\u00e4ger','Valkyrie'}
+print(run('Uninstall',selective).strip())
+assert not list((selective/'scripts').iterdir())
+for selection in [',','NotAnOperator']:
+    target=test_root/('invalid-'+str(len(selection)))
+    result=run('Install',target,expected=1,operators=selection)
+    assert not target.exists()
+print('PASS: subset selection, deduplication, aliases, ownership merge, complete uninstall and invalid/empty selection rejection.')

@@ -22,4 +22,8 @@ Publish the exact executable produced and scanned in CI. Verify the scan-report 
 
 ## Licensing and branding
 
-Use original project artwork, without official Ubisoft or Logitech logos or endorsement claims. No source license has been selected; public visibility alone does not grant reuse rights.
+Use original project artwork, without official Ubisoft or Logitech logos or endorsement claims. The project is MIT licensed. Retain its copyright and permission notice in redistributed copies.
+
+## Selective installation
+
+Version 1.2.0 adds a searchable checklist. All operators are selected initially; Clear enables choosing a smaller set. Filtering does not discard hidden selections. Empty or unknown selections are rejected before filesystem changes. Additional installs merge ownership records. Uninstall remains package-wide and is not limited by the current checklist.

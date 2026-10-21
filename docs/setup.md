@@ -10,9 +10,10 @@ The installer is unsigned. Check the release's scan report and checksums before 
 
 ## Installation
 
-1. Download the executable or Windows ZIP from [v1.1.0](https://github.com/contactjayclatty/Jay-GHUB-Script-Pack/releases/tag/v1.1.0). Extract the ZIP first if using it.
+1. Download the executable or Windows ZIP from [v1.2.0](https://github.com/contactjayclatty/Jay-GHUB-Script-Pack/releases/tag/v1.2.0). Extract the ZIP first if using it.
 2. Fully quit G HUB from its system tray icon.
-3. Run the installer and choose **Install scripts**.
+3. Run the installer and select the operators you want, then choose **Install selected**.
+   Use search to narrow the checklist. **Select All** and **Clear** affect the full roster; hidden selections stay checked.
 4. Read the completion message. It reports installed/skipped counts and the backup location.
 5. Reopen G HUB. In the intended profile's Scripting editor, select an operator script.
 6. Configure its two strengths. Both default to zero, so installation alone produces no mouse movement.
@@ -46,7 +47,7 @@ There is no automatic update or overwrite mode. If a script was skipped, check i
 
 ## Uninstall
 
-Quit G HUB, run the same installer, and choose **Uninstall pack**. Only unchanged files installed by this pack are removed. Edited scripts, unrelated folders and snapshots remain. A preserved script can be removed manually through G HUB if you no longer need it.
+Quit G HUB, run the same installer, and choose **Uninstall pack**. Uninstall checks every script installed by this pack, regardless of the current checklist. Only unchanged owned files are removed. Edited scripts, unrelated folders and snapshots remain. A preserved script can be removed manually through G HUB if you no longer need it.
 
 ## Backups and recovery
 

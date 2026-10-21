@@ -1,5 +1,5 @@
 {
-  "version": "1.1.0",
+  "version": "1.2.0",
   "rosterVerified": "2026-10-22",
   "rosterSource": "https://www.ubisoft.com/en-us/game/rainbow-six/siege/game-info/operators",
   "defaults": {
@@ -14,25 +14,25 @@
       "name": "Noor",
       "aliases": [],
       "file": "operator-01.lua",
-      "sha256": "621f0695b0d22038100da549204ec0f9743c7e6d71124506de8b8d1f06424aff"
+      "sha256": "7191c469f23000152addac0e9f57571d4be0dc1806bf6e7f5401cb56e9041514"
     },
     {
       "name": "Solid Snake",
       "aliases": [],
       "file": "operator-02.lua",
-      "sha256": "ee58daea8d70736c5c40f5160abdaefddaad9df7bb16aa95d792ee23c280e315"
+      "sha256": "efb5072c2a72fa91419a6622ee0e38556ff6bf9a3b71149467f190d7424f2516"
     },
     {
       "name": "Denari",
       "aliases": [],
       "file": "operator-03.lua",
-      "sha256": "05a74b11e80d1a6a2fa7a5ef982c0640dde01dd0e9681aeee839e4060b679789"
+      "sha256": "629d02bc7e5d9c04859813813d2e0e1ce4731fa6bfb7fc9648882da65b59a33d"
     },
     {
       "name": "Rauora",
       "aliases": [],
       "file": "operator-04.lua",
-      "sha256": "b336bdd1bec3415e93036125b3ddf13bc7042f2c424233628d30263792549191"
+      "sha256": "3bb68556a0e5059e183431cf474d74438ffc21bc11c6c143845bbefbbb18020f"
     },
     {
       "name": "Skopós",
@@ -40,25 +40,25 @@
         "Skopos"
       ],
       "file": "operator-05.lua",
-      "sha256": "b496dd1b66c744624ba8da1fba763adb4825d80bf334b9fb86ac91e61f5ce22a"
+      "sha256": "8d6ebf3cdf7f3b0b0cefda3d4eae37042c9b4fd62977e3dbfeecae443e3557fc"
     },
     {
       "name": "Striker",
       "aliases": [],
       "file": "operator-06.lua",
-      "sha256": "1f09732fa2d5f50ceed9e6289f4bbee75753dbea5f3efa15c367850b13cc71ee"
+      "sha256": "cb550995d7676adf985a0b380e4e38b16df64d21a994a5dca7c1546ea259e3f4"
     },
     {
       "name": "Sentry",
       "aliases": [],
       "file": "operator-07.lua",
-      "sha256": "47c657af87d3f388351b64095c708aa4833179501d552173dc57155db74f6d5c"
+      "sha256": "18b9767a98ea1d37c3e2a427f1054927062013c7c9153e18eee24ebaa11c2cb2"
     },
     {
       "name": "Deimos",
       "aliases": [],
       "file": "operator-08.lua",
-      "sha256": "28fa6acff02e8ec6c769145647f7b27044361bb2e2ea3cbb14793e24e986862c"
+      "sha256": "2bc37db867498f540942e5dfbba5a2856730a1aa20011ca9b1bef45d754a0b44"
     },
     {
       "name": "Tubarão",
@@ -66,133 +66,133 @@
         "Tubarao"
       ],
       "file": "operator-09.lua",
-      "sha256": "b425165496342c1f5b0a7106ac7b80a20241a43ff68f5cc3ace41242a3d8e738"
+      "sha256": "d3770abcbcfc8df257994a1b64519635180398146aeb83cd623a8c2b9eb6ab2a"
     },
     {
       "name": "Ram",
       "aliases": [],
       "file": "operator-10.lua",
-      "sha256": "89e2abba81dc75432da430f0abe82b18b78b3fb24f51bb0c3851a76a08f36f5d"
+      "sha256": "377b92744a43952fe9f458b3d902cd033ba4e265d3e9785cd06b42a4a5981a41"
     },
     {
       "name": "Fenrir",
       "aliases": [],
       "file": "operator-11.lua",
-      "sha256": "5454228354ae7019d8d4a83f3649657d704c8b78ff3210ade0b24836aa3f10b5"
+      "sha256": "523c306fc363c0cec45d63e6425e68c450b8e56eff0d9dc6024eb3071810a7b0"
     },
     {
       "name": "Brava",
       "aliases": [],
       "file": "operator-12.lua",
-      "sha256": "c122bfb5f317f9778d3252d4d8f11c4564921accdd569ff76472a8a7373ec886"
+      "sha256": "9d39e17c4b6b28a58470f1f4f7700c3f7c7bd508feeaf73b3d35c17dc4f7f20e"
     },
     {
       "name": "Solis",
       "aliases": [],
       "file": "operator-13.lua",
-      "sha256": "a17a7a40fd4f407bd4201ca3a5af2a6a154f247cd2e975f69a284455ef3a2efe"
+      "sha256": "ea1819f556f850b04560cf45ef5abd4da31584c8909b365a8dde50b91a713a52"
     },
     {
       "name": "Grim",
       "aliases": [],
       "file": "operator-14.lua",
-      "sha256": "b5078782fa1114ed324f34a9af546c27625596a859e7d113c0a10725b3f3781f"
+      "sha256": "accc776ce201f6b79221ab2abbba91d4e6f56ac0b90715c8a33642c6878e285b"
     },
     {
       "name": "Sens",
       "aliases": [],
       "file": "operator-15.lua",
-      "sha256": "6421ffa0de9f6135f82194b3cefb60eb22b0b632e2075e40061ec99804d9a7ea"
+      "sha256": "ca14813c381b1ad059bcd852b7e9c72340e849d3667e4d85ebe655fce04b5a11"
     },
     {
       "name": "Azami",
       "aliases": [],
       "file": "operator-16.lua",
-      "sha256": "be1969b93d4f67b04f1dc6ac7d1dd64b26eb3b2ddb0d2a47b194b1a25bfbd262"
+      "sha256": "844a21b33f47cda5040daf1b0871d96e01e1eeead5d388fe46ab6abfd8788db1"
     },
     {
       "name": "Thorn",
       "aliases": [],
       "file": "operator-17.lua",
-      "sha256": "3ad5934d97c2faaf1077159e644c64539b801b87798e46a951239a8f4be0a0b0"
+      "sha256": "91f7f175ce20a2a12659606c172aae86b336b997200276c9f4beb061cb2cbd77"
     },
     {
       "name": "Osa",
       "aliases": [],
       "file": "operator-18.lua",
-      "sha256": "baacb1d0e1a4d9ed74655647bc4c22dfd6b5b214ddd8f672a5a710ab5df3f71b"
+      "sha256": "f8a3d5fbe7c4a20a712b87d7e445d5a6fe456432699223071a934eadd9952bc9"
     },
     {
       "name": "Thunderbird",
       "aliases": [],
       "file": "operator-19.lua",
-      "sha256": "730030b5b5aa2101f431a179289f8173595ac989e6bc4d03e71db6fcd65cb775"
+      "sha256": "de2a8ebb5bb2ec393d8150491311f27020f6cc1c3bc9e8f1874cb433289f9d01"
     },
     {
       "name": "Flores",
       "aliases": [],
       "file": "operator-20.lua",
-      "sha256": "e38a02c0d632240b9cb6e39a8436eec3bc49e446cf72195efffa3081014328d4"
+      "sha256": "877824c3671bbb28a4a555b2238b6d0bedd05c93d62b994ceefe52e1c4807ed3"
     },
     {
       "name": "Aruni",
       "aliases": [],
       "file": "operator-21.lua",
-      "sha256": "272fa638cdb19f0bbe07c3ae74febc29bf4244e64a464b6fdb378bf3c84eb78a"
+      "sha256": "f134be181a5d76f57ac1bf6b8b49b437433036f85aea4ed24a0e6a5ac339f706"
     },
     {
       "name": "Zero",
       "aliases": [],
       "file": "operator-22.lua",
-      "sha256": "494db11441e4adbcd3ae8a494f4cb1d896cfc6453cd9b940e26814ab459c4cb3"
+      "sha256": "5203d1f7e248c327144ba7943120718d4e28b5073361fc4a339eaf62eff36e5a"
     },
     {
       "name": "Ace",
       "aliases": [],
       "file": "operator-23.lua",
-      "sha256": "9b3009853eb46823f1fe9bd4f19a2886c86df474cf3b04b80cd565a2197ed538"
+      "sha256": "7ecb1ffb04f72717ee2a62254130084710fb0e9c35659c2f3113c0c29101622c"
     },
     {
       "name": "Melusi",
       "aliases": [],
       "file": "operator-24.lua",
-      "sha256": "210601b6b962b65a3150d14ad6b6a1115c28dff44bbdedc4583a860539409914"
+      "sha256": "8800d843744be5b45b1065cf7bbd5b2c63fc5322ddccf2aef60856e18eff5870"
     },
     {
       "name": "Oryx",
       "aliases": [],
       "file": "operator-25.lua",
-      "sha256": "92880e1bfe102d806eac0db5b519af01e40cf938c6b153e20db86ec57cc8cd01"
+      "sha256": "ea43c5df76e9570d9044f0967a4481c428d9cca9a4a165efa20936ecdf82ae75"
     },
     {
       "name": "Iana",
       "aliases": [],
       "file": "operator-26.lua",
-      "sha256": "d50eabe3bc356b9613817de7d646a6da393e44bf346946bcfb3bdff1a81b98dc"
+      "sha256": "2a6cfeeb647c6aa42ecb83d1b7bdd795e173756b79001d3d2231af435306a062"
     },
     {
       "name": "Wamai",
       "aliases": [],
       "file": "operator-27.lua",
-      "sha256": "ba3753dd1fc203fa4f5dabf4c05e1218452f33ef8980aa3ac37536f33ad15fc1"
+      "sha256": "367ae9ca8e390663ca9f25f59521e4048a29d8d45be361f29af7720dc25371f1"
     },
     {
       "name": "Kali",
       "aliases": [],
       "file": "operator-28.lua",
-      "sha256": "fdd43dc817ab23486419f2886bc5f6f73cbf1aa4b9a5db23e4f614edecc53ff9"
+      "sha256": "cff2865704759ebfa7183498e81cd1967202310121639ed2e91560ab673db8e3"
     },
     {
       "name": "Amaru",
       "aliases": [],
       "file": "operator-29.lua",
-      "sha256": "9da56363dd9f43ac78d79068882ce7d64ec2aa95c8a120f4ee9d66fac14b8c4a"
+      "sha256": "4a61d7c1672e1eb60875df7f88b14d8120de5f0a1f95ce96a1a96978ccbdd532"
     },
     {
       "name": "Goyo",
       "aliases": [],
       "file": "operator-30.lua",
-      "sha256": "91aecff079c44a9598fe0d802b16df52c0f0d038075aa2538491ff333a2a1e5b"
+      "sha256": "9b79aaafc40199bad3a16e0bbefeb95045d9e4c7adbb1cfa24fce416ca25064d"
     },
     {
       "name": "Nøkk",
@@ -200,139 +200,139 @@
         "Nokk"
       ],
       "file": "operator-31.lua",
-      "sha256": "285905188bd087eab15b221386a5b5a6420ba00bf97a1e1f38baec2301018dc9"
+      "sha256": "7fc43042c9bf050c1d5ecdfb3b718c2298f895c371fce91f665f4124f37a5e68"
     },
     {
       "name": "Warden",
       "aliases": [],
       "file": "operator-32.lua",
-      "sha256": "fac2a3a0346aa5dd8d08389d273f4ab9243d95810fde93e3d569fe7d7feee5f3"
+      "sha256": "df4bc9bdcd0645de8958727214c779ae326307dc5f58a8de85405dd9c256b165"
     },
     {
       "name": "Mozzie",
       "aliases": [],
       "file": "operator-33.lua",
-      "sha256": "09f6c20e2754155028b4468e9ce1afb4390071a38a2812b5b200e2a9a3971664"
+      "sha256": "60b61d17e78bc3d794a27c3e3af8de74ce5fd09d06726106f27c7d844f8c2800"
     },
     {
       "name": "Gridlock",
       "aliases": [],
       "file": "operator-34.lua",
-      "sha256": "246aa906b06ba6700501079ff37dac4160b922eca73c18e08ebb18f825b3d4b3"
+      "sha256": "05d3c425d85a62955cdfd1dae3979504ee2265cb79b9314e48ac820c5ad66c63"
     },
     {
       "name": "Nomad",
       "aliases": [],
       "file": "operator-35.lua",
-      "sha256": "1a4943dc883a593d45f94f84bd45c67f6ea15946f076b918028f30a855339747"
+      "sha256": "be99152da5a9ce11c2766e389b4196a5445d24308ce5504507b19d614280d94f"
     },
     {
       "name": "Kaid",
       "aliases": [],
       "file": "operator-36.lua",
-      "sha256": "0c7e00a80add82723aeae7a8c91e2e6a92c2582dea694a160dc334a2c6951069"
+      "sha256": "239a393f814f663130c89c4a284d4185630bb9107bdd394a0e15fee17935ea0c"
     },
     {
       "name": "Clash",
       "aliases": [],
       "file": "operator-37.lua",
-      "sha256": "ce559aa13ea44f8941ffcfa6e338c64923d9430870f3dca692b181d594899f02"
+      "sha256": "22011f093dd14974ac6fc46c7d6f6619a1787656068e44ac8dffa5cd6c3d924d"
     },
     {
       "name": "Maverick",
       "aliases": [],
       "file": "operator-38.lua",
-      "sha256": "9d7777f739acc37fab4e3c734c06907a8136cccefa7c5ba1e7156d54808fc0ba"
+      "sha256": "9b93fc9bbc864a296c04de99e8212eb98a321bcf9f52c570608de5b209c2218b"
     },
     {
       "name": "Maestro",
       "aliases": [],
       "file": "operator-39.lua",
-      "sha256": "a84e52345d9d67c6e0fa0f61acb0933cf7df44725e2beedf6e390a06ad093fbc"
+      "sha256": "b2a6fd703af0cfd673cc9d210521758fe7c8e406939466cbb8ac7950fdcbdb46"
     },
     {
       "name": "Alibi",
       "aliases": [],
       "file": "operator-40.lua",
-      "sha256": "80c0f607ae401c61465f0ec9eb098b8b610ac18ca01c41f2d1f8a38b94284c31"
+      "sha256": "6aa1e197d84cfdf6775a4e7505b9ed28f58bc043ab5bfd346bc73429a3da7581"
     },
     {
       "name": "Lion",
       "aliases": [],
       "file": "operator-41.lua",
-      "sha256": "f19ce0cea4189e7a4050f007041d1a07a0915673368ecce913e298fa61002d0c"
+      "sha256": "8654308fecae87e953e5d7158764a9571aa2d449c9f76588b11e8f41168a7279"
     },
     {
       "name": "Finka",
       "aliases": [],
       "file": "operator-42.lua",
-      "sha256": "12413925b1b2ddc959fa180040c07f32075004f13efb53dcc4961a5fb62e2056"
+      "sha256": "e5557e212f6c01e4f4b2c8b7b4e1f5d75ed95d3de8c6c9d1ae0e50e3f8b0bc50"
     },
     {
       "name": "Vigil",
       "aliases": [],
       "file": "operator-43.lua",
-      "sha256": "3eae7dc48e6e148b901edec74c050fe34c4f0bfaf213b647ff7e2188a6ebef63"
+      "sha256": "5fccd3997351f3414c39f0b2ee5a42d52106c50055dc68125316f26c5ff41da6"
     },
     {
       "name": "Dokkaebi",
       "aliases": [],
       "file": "operator-44.lua",
-      "sha256": "7355f90246211a5a5e2da026462c7554b2d45c4f9f4a78dea8932f79acf3ef0e"
+      "sha256": "02b6dfa90dbffa789f3f0092029eb68a941702bbe120c6483e6d9bc43e4bbd11"
     },
     {
       "name": "Zofia",
       "aliases": [],
       "file": "operator-45.lua",
-      "sha256": "c50f336951942891ccbc184c7829853496722c9155cb77234634c672ce078c25"
+      "sha256": "d66877941a03ae218f007cc11fe69d90f2c8ce739edb735d3f23c7f200e63514"
     },
     {
       "name": "Ela",
       "aliases": [],
       "file": "operator-46.lua",
-      "sha256": "29ba8379c53d9128d897a3ea423036c19c7f04596357d3cfde8464dc9b976ccb"
+      "sha256": "cc435f4272baa29805359de0b294b9c28a33e2f4d8f1ff61f9a850f01014a059"
     },
     {
       "name": "Ying",
       "aliases": [],
       "file": "operator-47.lua",
-      "sha256": "8949229f774cbebe599f98e5b02b1ca1fdfa2b00ed4d5cce841717893026baff"
+      "sha256": "6c113562b84f2e5d5c869eea312c69e04f111c85973109c6b8de6278700e84e5"
     },
     {
       "name": "Lesion",
       "aliases": [],
       "file": "operator-48.lua",
-      "sha256": "1afc56869d16221d707053ff6e811f5552ed92751aeda3d55169515ccf3ab285"
+      "sha256": "1e17381048b7dfcc3ba82f1e939248c975f3ab53630fe588c511cc43e5670534"
     },
     {
       "name": "Mira",
       "aliases": [],
       "file": "operator-49.lua",
-      "sha256": "cca4749b5cbf1bf9ce1c1563b68a5c50f465338c47256f33d8376a4c5cab6535"
+      "sha256": "35a29b330f60affe71f8e36673c743c93a674326ab2fa83ed18f141c3859a3a5"
     },
     {
       "name": "Jackal",
       "aliases": [],
       "file": "operator-50.lua",
-      "sha256": "5e942255e5cca28d5b5615ee42da43f896dfb5930bf2ea1659ed734d8c0da209"
+      "sha256": "fd5737a4af996c85cba4cdfc525b8f3e6bc105c2033c053bfb3740f5b6d754a1"
     },
     {
       "name": "Hibana",
       "aliases": [],
       "file": "operator-51.lua",
-      "sha256": "4c424d5289f87f8f8dcbaa8b610dff1beda160501c1a22c75668afa4cede3659"
+      "sha256": "8dfbea020bc5f829f8ef2e57d79b33376850b7ea3564a3e919b0d43f12ad0ec3"
     },
     {
       "name": "Echo",
       "aliases": [],
       "file": "operator-52.lua",
-      "sha256": "e87e4470a91d63a9a95783ec761704f66842c71c5cde3fac6e754c845f48f349"
+      "sha256": "2147ddb7e4ed673e98ff3f3e164d66b605ed706c6c291d5f6f77be9953573fcb"
     },
     {
       "name": "Caveira",
       "aliases": [],
       "file": "operator-53.lua",
-      "sha256": "06a1b24e4587a75cd5479d372dc09eed22166c3ffbd9dc2d56fa8ff9d085d0e4"
+      "sha256": "ef16aefdb10a7ec83d3cd4eeafc101bc90d75f71c087a37fbdbd6035ba2b3668"
     },
     {
       "name": "Capitão",
@@ -340,13 +340,13 @@
         "Capitao"
       ],
       "file": "operator-54.lua",
-      "sha256": "1a7ca03d4cbe2c7df41dee4b4ddc10c120b5937081ade2b3ec9dc8b97dc7ef71"
+      "sha256": "74edbe34c399637f643237691e0d5df499c29f17f8398252f482bd4091de028d"
     },
     {
       "name": "Blackbeard",
       "aliases": [],
       "file": "operator-55.lua",
-      "sha256": "71d3724b18e40f2d1e53e1207b333df8d6ca29968fb4c77abd3388a8d1732b4c"
+      "sha256": "e87a9d796b9478d8b93032ae1b1d268a1459848d0778ea584d696e9f3f979104"
     },
     {
       "name": "Valkyrie",
@@ -354,91 +354,91 @@
         "Valk"
       ],
       "file": "operator-56.lua",
-      "sha256": "a93a4ef1736d30ffc722bbf74479076891a65d9054e832f84786e9d6a487c36d"
+      "sha256": "c4ef42dd2b5deee5e56651af29025cb284453c2ef760c7fd0f4377bc45c4f84e"
     },
     {
       "name": "Buck",
       "aliases": [],
       "file": "operator-57.lua",
-      "sha256": "9a765832c89da340d3622f2537d24242c2eec6ee724a19217d8a79682dbcf530"
+      "sha256": "28bb86ba7803be5367a24b2bd4aaae20051aaa208f70a41e2d4dad938b72e412"
     },
     {
       "name": "Frost",
       "aliases": [],
       "file": "operator-58.lua",
-      "sha256": "598b0a9d106cf42a32f21eeadc9d5fe74fab8afe9e5aab6391145ec37c4db576"
+      "sha256": "6462c1b24d816920f061f60d280fa133697f4fdc6c5bdcd91b42979db580a4ee"
     },
     {
       "name": "Mute",
       "aliases": [],
       "file": "operator-59.lua",
-      "sha256": "5682bf8f22d06283a76c3499de36ae03058d90b2de1749a0fc150c78ce512b53"
+      "sha256": "c51eb6db3cae6dba4f524ee83a01c8e2e94360da980aa266243fb3de61fab340"
     },
     {
       "name": "Sledge",
       "aliases": [],
       "file": "operator-60.lua",
-      "sha256": "2f6242868d0f54a41993111923d1a4a1c8ddbb35c9c4fbfe8c0bc3782b20ead2"
+      "sha256": "1d18007a252678e11fbe9ae8b0a844184b40b194e4ff555afacf1c78a0e35137"
     },
     {
       "name": "Smoke",
       "aliases": [],
       "file": "operator-61.lua",
-      "sha256": "67bf452fd0d9ab5bc85a816628d8f0da7db1c98e40616eb513788b21d8d4fd95"
+      "sha256": "b30b7d6200b8e1f92561aca83070df3a621833b3919e96afe278c8e3b68db4c0"
     },
     {
       "name": "Thatcher",
       "aliases": [],
       "file": "operator-62.lua",
-      "sha256": "86529b0a133cb19ed3771b2b627a0a66ac8f6d0e05954401841d97102ec89b8d"
+      "sha256": "e6cc4ef4383134476d9dd28959f1c0e0058536d7dd5ea9152c504c1232ba6a67"
     },
     {
       "name": "Ash",
       "aliases": [],
       "file": "operator-63.lua",
-      "sha256": "d6dff4dc138be69b9ceb19ca49bd9a63d1a0b40803e94105e81936b0d07e7c8e"
+      "sha256": "070fbd2e1495f03d2de90fee5f7990f1d14ed3acdccfd25effe68455221d4683"
     },
     {
       "name": "Castle",
       "aliases": [],
       "file": "operator-64.lua",
-      "sha256": "45b60ea6f0795b1dbf2c5fed9bcd20afa517bd89243f5a6aff4a3a8b40476345"
+      "sha256": "8e4701530d66e4b566c4dcda8dbb972f76b80abace1808a71a1507882e943b1b"
     },
     {
       "name": "Pulse",
       "aliases": [],
       "file": "operator-65.lua",
-      "sha256": "fdfea775be1ab2bc5dc0e5100503c4deee4e972e1a6ba4d2f294c9883a78d8e3"
+      "sha256": "070877852864e7c34eb1448833ef5a116fe5fb5042b2186c11821c5df383afcf"
     },
     {
       "name": "Thermite",
       "aliases": [],
       "file": "operator-66.lua",
-      "sha256": "68bf2829c44ad4adb4e24e67537d00379682a09c1cf8580030bb6d0b9f891e17"
+      "sha256": "f1a7cbc8ac94f314078dec1c52208240a79e5811a412569f245854d6f3a2a8f6"
     },
     {
       "name": "Montagne",
       "aliases": [],
       "file": "operator-67.lua",
-      "sha256": "db64a2c9dd3cda0cca16edad987e225467eeda8b47c8162c2aa9479ab60508cc"
+      "sha256": "b725c80860ad11eb188710e7dd879a78a8db7847874883a8e1007146e3d7c7e1"
     },
     {
       "name": "Twitch",
       "aliases": [],
       "file": "operator-68.lua",
-      "sha256": "1736ac02de8a6d0b8332c934c2f32af328493532a3c988d7983ec1c167eb4979"
+      "sha256": "0bf195097c97e2d8e293d5bafde0e4085c7519839014f0ba2faece7adb676c95"
     },
     {
       "name": "Doc",
       "aliases": [],
       "file": "operator-69.lua",
-      "sha256": "52efc44d31dafc3e8b5617b00ed1e51f1b49e9e932cfb0b69c125b53d15959ff"
+      "sha256": "54d9df303dab32b4d9de7e27372f80ef5f2be52353033e391e6cc6141bdb66f6"
     },
     {
       "name": "Rook",
       "aliases": [],
       "file": "operator-70.lua",
-      "sha256": "64865bf6049c5107a64d67fd62fac68dbc1d3697a4496edc54a22c247cf79c4f"
+      "sha256": "8a981f0f4c05e25ad8b3385178e8cc543727329682afb62610a8b876d7638a10"
     },
     {
       "name": "Jäger",
@@ -446,49 +446,49 @@
         "Jager"
       ],
       "file": "operator-71.lua",
-      "sha256": "d105b01d885f3747ba441c6e4c3f986f3cc6a47fd58de6e57613d33fa7d0612e"
+      "sha256": "0068aa410000b2f9bd88a008ca6b592622110884d656572ebbf2e7859451ef2d"
     },
     {
       "name": "Bandit",
       "aliases": [],
       "file": "operator-72.lua",
-      "sha256": "9bf75f4a221a998dc413d0dd622b3dfa9a07777f9366657a99c0a936022eded0"
+      "sha256": "5fee2fa4bd35369821d0c33090b371534c91d689f1d093c696cbf74036f7cea5"
     },
     {
       "name": "Blitz",
       "aliases": [],
       "file": "operator-73.lua",
-      "sha256": "16b4f1b97a1c8eb6d8d476e73d62a0bbda59c48b56ad1c6d85617d93cc42cc57"
+      "sha256": "69177e87b0964c41c59be4467b67c268e4e273558c9cc534c219d26b8d5b05e4"
     },
     {
       "name": "IQ",
       "aliases": [],
       "file": "operator-74.lua",
-      "sha256": "b23b6374177eca0f2909a50f29cfab2ec9c337c18219d7e12f1518d9cdb44f45"
+      "sha256": "255facd989aeacadd22cdea70b226aacb7be1d857cd95f7f550f2a92d9287ec6"
     },
     {
       "name": "Fuze",
       "aliases": [],
       "file": "operator-75.lua",
-      "sha256": "839b6939c22d558a7a525bc7e038361aabaf649ea402c5fa7d21d95526636af7"
+      "sha256": "5c9f09022e5ddcd80d832b5f36adb6b508376347401f66a71f2f864a4c7d1d0f"
     },
     {
       "name": "Glaz",
       "aliases": [],
       "file": "operator-76.lua",
-      "sha256": "4cbc5d89c9916b8c829f2262c947fe3d2bbdb5e3087d4e1edd7f7531a226f9fb"
+      "sha256": "070bf2b3f46e19e1e376c1f9245b2ed706a1305b64f86e35f9cf34199216c077"
     },
     {
       "name": "Tachanka",
       "aliases": [],
       "file": "operator-77.lua",
-      "sha256": "170cf8c070be4a86b66d7337ff5a02ce2581f900fa4b38de1dc85e18be26d6d1"
+      "sha256": "22aa8581fdd9a2868a6c9bda1bdd6757a69ca00ffcc995f21f0aa0378e1d514b"
     },
     {
       "name": "Kapkan",
       "aliases": [],
       "file": "operator-78.lua",
-      "sha256": "0ed4098b6b253a63eb2c122c4f5a5616f815460eb7d32b9dd6ae5039372e3bc8"
+      "sha256": "7d1f141b941a2f7dd9f68291791cb8d9dbe0093f05fbb50518fac90610321752"
     }
   ]
 }

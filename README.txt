@@ -1,9 +1,9 @@
-G HUB Operator Script Pack 1.1.0
+G HUB Operator Script Pack 1.2.0
 
 INSTALL
 1. Install and open Logitech G HUB at least once on the destination PC.
 2. Fully quit G HUB using its system tray icon.
-3. Double-click GHUB-Script-Installer.exe and choose Install scripts.
+3. Double-click GHUB-Script-Installer.exe and choose operators and select Install selected.
 4. Reopen G HUB and select the desired script in its Scripting editor for
    the intended game profile. Installing does not automatically select a script.
 
@@ -64,3 +64,8 @@ The user's working G HUB scripts were not changed during installer tests.
 SOURCE
 GHUB-Script-Installer-source.zip contains the launcher, PowerShell installer,
 bundled Lua scripts, build script, tests and SHA-256 catalog for inspection.
+
+VERSION 1.2.0
+Search and select individual operators, Select All or Clear before installation.
+Selection affects installation only; Uninstall pack checks all scripts it owns.
+MIT licensed; LICENSE is included in the package.

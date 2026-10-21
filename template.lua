@@ -1,3 +1,4 @@
+-- SPDX-License-Identifier: MIT
 -- NEUTRAL STARTING VALUES: these are not operator-specific recoil presets.
 -- USER TUNING: adjust these two values after testing your weapon and sensitivity.
 RcCustomStrength = 0       -- Downward movement per vertical step; 0 means none.

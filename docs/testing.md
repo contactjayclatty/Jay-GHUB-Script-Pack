@@ -13,7 +13,7 @@ Installer tests use isolated project directories and never modify live G HUB scr
 
 ## Malware scan evidence
 
-The [v1.1.0 scan report](https://github.com/contactjayclatty/Jay-GHUB-Script-Pack/releases/download/v1.1.0/malware-scan-report.json) reports **no threats detected** and records the exact executable SHA-256, engine/signature versions, targets, exit codes, UTC timestamp, commit and CI run.
+The [v1.2.0 scan report](https://github.com/contactjayclatty/Jay-GHUB-Script-Pack/releases/download/v1.2.0/malware-scan-report.json) reports **no threats detected** and records the exact executable SHA-256, engine/signature versions, targets, exit codes, UTC timestamp, commit and CI run.
 
 The scan requires active Defender and recent signatures. Only an ephemeral GitHub runner is reconfigured; local antivirus settings are not changed. Failed or unavailable scans fail CI. The released executable must match the report's hash.
 
@@ -34,4 +34,6 @@ On another Windows account or PC:
 5. Edit that script, uninstall the pack, and confirm the edit and unrelated scripts survive.
 6. Record Windows version, G HUB version and observed results in an issue or discussion.
 
-Cross-install discovery remains unverified. CI success must not be presented as universal G HUB compatibility.
+On 22 October 2026 the maintainer reported that installation works on another PC. Windows/G HUB versions and a recording were not supplied. This is user-reported evidence, not an independently reproduced compatibility matrix. New v1.2.0 selection behavior still needs testing there. CI success must not be presented as universal G HUB compatibility.
+
+Selective-install tests cover subsets, duplicate names, aliases, incremental ownership, package-wide uninstall and rejection of empty/unknown selections before file creation. `make_demo.py` uses Pillow to render the actual form and records verified install/uninstall output from an isolated folder. It does not operate G HUB.

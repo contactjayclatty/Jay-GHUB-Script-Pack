@@ -13,7 +13,7 @@
 2. Confirm `malware-scan-report.json` reports no detections and identifies the intended commit.
 3. Hash the executable and compare it with the scan report. Use this exact binary, not a later local rebuild.
 4. Create the source ZIP with `git archive` from the release commit.
-5. Create a Windows ZIP containing the executable, README.txt, OPERATORS.txt and scan report.
+5. Create a Windows ZIP containing the executable, README.txt, OPERATORS.txt, LICENSE and scan report.
 6. Generate SHA256SUMS.txt over the executable, ZIPs and report.
 
 ## Publish

@@ -1,16 +1,21 @@
 # Roadmap
 
-## Next: validate installation outside the development setup
+## In v1.2.0
 
-- Test installer UI and G HUB discovery on another Windows account or PC.
-- Record Windows/G HUB versions and results in [testing.md](testing.md).
-- Check neutral templates, existing-name handling and edited-script preservation there.
-- Publish the first release after the owner's approved redesign and successful malware scan; broad compatibility testing remains open.
+- Searchable operator checklist, Select All, Clear and live selected counts.
+- MIT license and a demo backed by isolated install/uninstall results.
+- User-reported successful installation on another PC recorded in the testing guide.
+
+## Next checks
+
+- Record Windows/G HUB versions from additional installations.
+- Test v1.2.0 selection and edited-script preservation on another PC.
+- Obtain a publicly trusted code-signing certificate for future releases. The current installer remains unsigned.
 
 ## Candidate improvements
 
-- Make the template-generation Lua compiler path configurable.
-- Add a read-only installation summary showing what will be installed or skipped.
-- Improve the recovery guide based on actual user reports.
+- Configurable Lua compiler path for template generation.
+- A detailed read-only plan of operators to install or skip.
+- Further recovery guidance from actual user reports.
 
-These are candidates, not promised features or dates. Changes must preserve existing tuning, neutral defaults and ownership checks. See [decisions.md](decisions.md).
+No release dates are promised. Existing calibration and ownership checks remain the priority.
