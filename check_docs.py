@@ -20,6 +20,7 @@ rows += ['', '</details>']
 generated = '\n'.join(rows)
 readme = root/'README.md'
 text = readme.read_text(encoding='utf-8')
+assert not any(marker in text for marker in ['\u00c3', '\u00e2\u20ac', '\u00c2\u00b7', '\u00e2\u201d']), 'README contains mojibake; decode UTF-8 explicitly when editing'
 pattern = r'(?<=<!-- operators:begin -->)\s*.*?\s*(?=<!-- operators:end -->)'
 assert len(re.findall(pattern, text, flags=re.S)) == 1, 'Expected one roster block'
 expected = re.sub(pattern, '\n' + generated + '\n', text, flags=re.S)
