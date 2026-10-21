@@ -51,3 +51,7 @@ The checklist keeps selected canonical names separately from the filtered displa
 The optional `make_demo.py` tool needs Pillow and renders the real form while validating a two-operator install/uninstall against a generated test folder. Its GIF is labelled as a test-folder demonstration.
 
 The executable includes product/file version metadata. No publicly trusted code-signing certificate was available for this release, so it remains unsigned. The unrelated development certificate is not used.
+
+## Download website
+
+The static download site is published from `site/` by `.github/workflows/pages.yml`. Release downloads stay on GitHub Releases. See [website maintenance](website.md) for design decisions, release updates and browser checks.

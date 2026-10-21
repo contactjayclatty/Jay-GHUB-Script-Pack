@@ -30,6 +30,8 @@ Choose the operators you want. Install their Lua templates into Logitech G HUB w
 
 Only two strength values sit in the basic configuration section. Advanced timing and controls are kept separate. Burst resets, idle pauses and aim-release checks are included in every template.
 
+**[Visit the download website →](https://contactjayclatty.github.io/Jay-GHUB-Script-Pack/)**
+
 ## Install in three steps
 
 **1 · Close G HUB**
