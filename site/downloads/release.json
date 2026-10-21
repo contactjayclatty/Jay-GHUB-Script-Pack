@@ -1,0 +1,23 @@
+{
+  "installer": {
+    "file": "Jay-GHUB-Script-Pack-v1.2.0.exe",
+    "size": 120832,
+    "sha256": "d1007043cbfe91b2f0c2fa72b504fee2b656227856ecad6eb862edfb13831116",
+    "url": "downloads/Jay-GHUB-Script-Pack-v1.2.0.exe",
+    "github": "https://github.com/contactjayclatty/Jay-GHUB-Script-Pack/releases/download/v1.2.0/Jay-GHUB-Script-Pack-v1.2.0.exe"
+  },
+  "bundle": {
+    "file": "Jay-GHUB-Script-Pack-v1.2.0-windows.zip",
+    "size": 67883,
+    "sha256": "915414282737c4ceb2d79e97cab48ec7b93beba6f5f2008cb18c558994766919",
+    "url": "downloads/Jay-GHUB-Script-Pack-v1.2.0-windows.zip",
+    "github": "https://github.com/contactjayclatty/Jay-GHUB-Script-Pack/releases/download/v1.2.0/Jay-GHUB-Script-Pack-v1.2.0-windows.zip"
+  },
+  "source": {
+    "file": "Jay-GHUB-Script-Pack-v1.2.0-source.zip",
+    "size": 241010,
+    "sha256": "36bc7dfcf53898c18e12a2f4ff8f2d8921fc0114a6453e9da545ac74d62a1f8b",
+    "url": "downloads/Jay-GHUB-Script-Pack-v1.2.0-source.zip",
+    "github": "https://github.com/contactjayclatty/Jay-GHUB-Script-Pack/releases/download/v1.2.0/Jay-GHUB-Script-Pack-v1.2.0-source.zip"
+  }
+}
