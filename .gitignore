@@ -1,0 +1,6 @@
+dist/
+test-data-*/
+__pycache__/
+package.zip
+previous-calibrated-payload.zip
+*.tmp
