@@ -15,3 +15,7 @@ Required manual UAT before broad distribution:
 Status: isolated engine tests and local compiler checks passed before repository creation. Separate-machine visual/discovery UAT remains unverified. CI status must be checked live for each published commit.
 
 `python check_docs.py` verifies the generated README roster against the catalog, checks local document links and headings, and parses the static SVG header. Regenerate only its marked roster block with `python check_docs.py --write-roster`. This does not validate external URLs or replace inspecting GitHub's rendered README.
+
+`Installer.ps1 -RenderPreview <png>` renders the real form offscreen without calling install/uninstall. The resulting screenshot is inspected for layout; it does not establish cross-PC G HUB discovery or interactive installation behavior.
+
+`scan-release.ps1` requires active Defender and current signatures. Only on GITHUB_ACTIONS does it enable the runner's scanner/remove preconfigured exclusions; it never configures the developer's local antivirus. Custom scans use DisableRemediation so detections remain a failed check rather than being silently removed. The JSON report identifies the executable hash, scanner/signature versions, targets, exit codes, UTC time, commit and CI run. A failed or unavailable scan fails CI and must not be reported clean. The uploaded executable must match that report before release.

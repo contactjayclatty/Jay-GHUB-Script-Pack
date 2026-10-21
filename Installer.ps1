@@ -1,7 +1,8 @@
 param(
     [ValidateSet('UI','Install','Uninstall')][string]$Action = 'UI',
     [string]$TargetRoot = (Join-Path $env:LOCALAPPDATA 'LGHUB'),
-    [switch]$TestMode
+    [switch]$TestMode,
+    [string]$RenderPreview
 )
 $ErrorActionPreference = 'Stop'
 $packId = 'siege-operator-lua-pack-v1'
@@ -129,31 +130,78 @@ Add-Type -AssemblyName System.Windows.Forms
 Add-Type -AssemblyName System.Drawing
 [Windows.Forms.Application]::EnableVisualStyles()
 $form = New-Object Windows.Forms.Form
-$form.Text = 'G HUB Operator Script Pack'
-$form.ClientSize = New-Object Drawing.Size(570,440)
+$form.Text = "Jay's G HUB Script Pack"
+$form.ClientSize = New-Object Drawing.Size(700,530)
+$form.BackColor = [Drawing.ColorTranslator]::FromHtml('#0D141D')
+$form.ForeColor = [Drawing.ColorTranslator]::FromHtml('#EDF3F7')
+$form.Font = New-Object Drawing.Font('Segoe UI',10)
 $form.StartPosition = 'CenterScreen'
 $form.FormBorderStyle = 'FixedDialog'
 $form.MaximizeBox = $false
-$label = New-Object Windows.Forms.Label
-$label.Location = New-Object Drawing.Point(24,20)
-$label.Size = New-Object Drawing.Size(522,310)
-$label.Font = New-Object Drawing.Font('Segoe UI',10)
-$label.Text = "Install $(@($catalog.scripts).Count) named operator Lua templates for the current Windows user.`r`n`r`nRoster checked: $($catalog.rosterVerified). Includes Noor and Solid Snake.`r`n`r`nDefaults: vertical 0, horizontal 0. These templates require calibration; names do not imply tuned recoil.`r`n`r`nFully quit G HUB before continuing. Existing names are skipped, and current scripts are backed up first.`r`n`r`nUninstall removes only unchanged files installed by this package. Modified scripts are preserved."
-$form.Controls.Add($label)
+$iconPath=Join-Path $PSScriptRoot 'app.ico'
+if (-not (Test-Path -LiteralPath $iconPath)) { $iconPath=Join-Path $PSScriptRoot 'assets\app.ico' }
+if (Test-Path -LiteralPath $iconPath) { $form.Icon = New-Object Drawing.Icon($iconPath) }
+function Add-Text([string]$Text,[int]$X,[int]$Y,[int]$Width,[int]$Height,[int]$Size,[string]$Color,[bool]$Bold=$false) {
+    $label=New-Object Windows.Forms.Label
+    $label.Text=$Text
+    $label.Location=New-Object Drawing.Point($X,$Y)
+    $label.Size=New-Object Drawing.Size($Width,$Height)
+    $style=[Drawing.FontStyle]::Regular
+    if ($Bold) { $style=[Drawing.FontStyle]::Bold }
+    $label.Font=New-Object Drawing.Font('Segoe UI',$Size,$style)
+    $label.ForeColor=[Drawing.ColorTranslator]::FromHtml($Color)
+    $form.Controls.Add($label)
+}
+$stripe=New-Object Windows.Forms.Panel
+$stripe.Location=New-Object Drawing.Point(0,0)
+$stripe.Size=New-Object Drawing.Size(700,5)
+$stripe.BackColor=[Drawing.ColorTranslator]::FromHtml('#F3C84B')
+$form.Controls.Add($stripe)
+Add-Text 'JAY // OPERATOR TOOLS' 30 26 520 25 11 '#F3C84B' $true
+Add-Text 'G HUB SCRIPT PACK' 27 61 560 52 27 '#EDF3F7' $true
+Add-Text "$(@($catalog.scripts).Count) OPERATORS / WINDOWS / v$($catalog.version)" 30 121 630 26 11 '#78D9EA' $true
+Add-Text '01  BACK UP     /     02  INSTALL     /     03  CONFIGURE' 30 171 640 28 11 '#EDF3F7' $true
+Add-Text "Named Lua templates for your G HUB profiles. Existing names are skipped; a snapshot protects the scripts you already have." 30 214 640 56 11 '#B5C4D0'
+Add-Text 'NEUTRAL DEFAULTS // VERTICAL 0 / HORIZONTAL 0' 30 287 640 27 11 '#F3C84B' $true
+Add-Text 'Calibrate the two strengths before use. Advanced timing and controls are preserved. These templates are not operator-tuned recoil profiles.' 30 322 640 54 10 '#B5C4D0'
+Add-Text 'BEFORE YOU START: FULLY QUIT G HUB FROM THE TRAY.' 30 391 640 25 10 '#EDF3F7' $true
+Add-Text 'Independent project by Jay. Not endorsed by Ubisoft or Logitech.' 30 494 640 22 8 '#7D92A4'
 $install = New-Object Windows.Forms.Button
-$install.Text = 'Install scripts'
-$install.Location = New-Object Drawing.Point(24,360)
-$install.Size = New-Object Drawing.Size(155,42)
+$install.Text = 'INSTALL SCRIPTS'
+$install.Location = New-Object Drawing.Point(30,436)
+$install.Size = New-Object Drawing.Size(235,42)
+$install.BackColor=[Drawing.ColorTranslator]::FromHtml('#F3C84B')
+$install.ForeColor=[Drawing.ColorTranslator]::FromHtml('#0D141D')
 $uninstall = New-Object Windows.Forms.Button
-$uninstall.Text = 'Uninstall pack'
-$uninstall.Location = New-Object Drawing.Point(197,360)
-$uninstall.Size = New-Object Drawing.Size(155,42)
+$uninstall.Text = 'UNINSTALL PACK'
+$uninstall.Location = New-Object Drawing.Point(279,436)
+$uninstall.Size = New-Object Drawing.Size(235,42)
+$uninstall.BackColor=[Drawing.ColorTranslator]::FromHtml('#1C2C3B')
 $close = New-Object Windows.Forms.Button
-$close.Text = 'Close'
-$close.Location = New-Object Drawing.Point(370,360)
-$close.Size = New-Object Drawing.Size(155,42)
+$close.Text = 'CLOSE'
+$close.Location = New-Object Drawing.Point(528,436)
+$close.Size = New-Object Drawing.Size(142,42)
+$close.BackColor=[Drawing.ColorTranslator]::FromHtml('#1C2C3B')
+foreach ($button in @($install,$uninstall,$close)) {
+    $button.FlatStyle=[Windows.Forms.FlatStyle]::Flat
+    $button.FlatAppearance.BorderSize=0
+    $button.Font=New-Object Drawing.Font('Segoe UI',10,[Drawing.FontStyle]::Bold)
+    $button.Cursor=[Windows.Forms.Cursors]::Hand
+}
 $install.Add_Click({ try { $install.Enabled=$false; $uninstall.Enabled=$false; $msg=Install-Pack; [Windows.Forms.MessageBox]::Show($msg,'Installation complete') | Out-Null } catch { [Windows.Forms.MessageBox]::Show($_.Exception.Message,'Installation stopped') | Out-Null } finally { $install.Enabled=$true; $uninstall.Enabled=$true } })
 $uninstall.Add_Click({ try { $install.Enabled=$false; $uninstall.Enabled=$false; $msg=Uninstall-Pack; [Windows.Forms.MessageBox]::Show($msg,'Uninstall complete') | Out-Null } catch { [Windows.Forms.MessageBox]::Show($_.Exception.Message,'Uninstall stopped') | Out-Null } finally { $install.Enabled=$true; $uninstall.Enabled=$true } })
 $close.Add_Click({ $form.Close() })
 $form.Controls.AddRange(@($install,$uninstall,$close))
+if ($RenderPreview) {
+    $form.ShowInTaskbar=$false
+    $form.StartPosition='Manual'
+    $form.Location=New-Object Drawing.Point(-10000,-10000)
+    $form.Show()
+    [Windows.Forms.Application]::DoEvents()
+    $form.Refresh()
+    $bitmap=New-Object Drawing.Bitmap($form.Width,$form.Height)
+    try { $form.DrawToBitmap($bitmap,(New-Object Drawing.Rectangle(0,0,$form.Width,$form.Height))); $bitmap.Save([IO.Path]::GetFullPath($RenderPreview),[Drawing.Imaging.ImageFormat]::Png) }
+    finally { $bitmap.Dispose(); $form.Dispose() }
+    exit
+}
 [void]$form.ShowDialog()

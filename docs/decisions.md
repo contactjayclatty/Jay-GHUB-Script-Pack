@@ -16,3 +16,9 @@ Release limitations: executable unsigned; separate-machine UI/discovery UAT outs
 ## 2026-10-22: README and discoverability
 
 Jay requested a substantially improved README and a repository more likely to attract stars. Use accurate topics, clearer benefits and setup guidance, a static branded header, issue forms, Discussions and contributor guidance. Do not promise star growth, purchase/fabricate engagement, post promotional messages, invent results or publish the draft without approval. A public release remains a prerequisite for public binary downloads; the README makes that status explicit.
+
+## 2026-10-22: tactical design and first published project release
+
+Jay explicitly requested a more R6-like design and release of an official installer with a virus check. Use original tactical styling (dark slate, amber, cyan, angular framing), without official logos or claims of Ubisoft/Logitech endorsement. Publication of v1.1.0 is authorized after successful validation and malware scanning.
+
+Local Defender was inactive, so do not change the developer's antivirus configuration or call that a clean scan. Use an ephemeral GitHub Windows runner, update Defender signatures, scan the exact executable plus extracted script payload, and bind evidence to SHA-256. Publish the scanned binary downloaded from that runner, not a separately rebuilt executable. Describe a no-detections result as a single-engine scan, not a guarantee or code signature. The installer remains unsigned.

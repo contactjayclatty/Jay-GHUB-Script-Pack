@@ -23,3 +23,9 @@ Jay requested a much stronger README and better prospects for stars. Replaced th
 Knowledge delta: `README.md`, `assets/banner.svg`, `CONTRIBUTING.md`, `.github/ISSUE_TEMPLATE/`, `.github/PULL_REQUEST_TEMPLATE.md`, `docs/roadmap.md`, this record, decisions/testing/index, agent guidance, and the new documentation CI gate. Installer code and the v1.1.0 draft assets are unchanged.
 
 Librarian review: setup, configuration, recovery, support and build paths are linked from the README and maintainer index. Draft downloads and remaining UAT are explicit. GitHub-rendered documentation and remote settings are checked after push. Stars are not a guaranteed outcome.
+
+## 2026-10-22: tactical release styling and malware scan
+
+Jay requested Siege-inspired design and publication with a virus check. Added original tactical banner/UI styling, a project icon and a preview renderer. Added an isolated CI Defender scan with current signatures and a hash-bound report; local Defender was inactive, so local security settings remain unchanged. The release uses the exact CI-scanned binary. README download links and release notes are updated for the approved publication, with unsigned status and independent-project scope retained.
+
+Knowledge delta: README, RELEASE_NOTES, Installer.ps1, build.ps1, scan-release.ps1, validation workflow, assets and the linked testing/architecture/decisions/release/roadmap documents. The 78 Lua payloads and calibrated live scripts remain unchanged. Librarian review: public claims point to scan evidence and preserve the difference between no detections, signing and runtime compatibility.

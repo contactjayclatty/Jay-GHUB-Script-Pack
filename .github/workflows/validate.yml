@@ -20,7 +20,11 @@ jobs:
       - name: Build installer
         shell: powershell
         run: .\build.ps1
+      - name: Scan exact executable and extracted payload with Microsoft Defender
+        shell: powershell
+        run: .\scan-release.ps1
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: windows-installer
           path: dist/*

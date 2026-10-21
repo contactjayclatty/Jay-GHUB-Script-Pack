@@ -1,13 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="420" viewBox="0 0 1280 420" role="img" aria-labelledby="title desc">
-<title id="title">Jay's G HUB Script Pack</title><desc id="desc">78 operator templates with neutral defaults. Back up, install, configure.</desc>
-<defs><linearGradient id="bg" x2="1" y2="1"><stop stop-color="#101e30"/><stop offset="1" stop-color="#080f19"/></linearGradient><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#86a9c8" stroke-opacity=".06"/></pattern></defs>
-<rect width="1280" height="420" rx="24" fill="url(#bg)"/><rect width="1280" height="420" rx="24" fill="url(#grid)"/>
-<rect x="56" y="58" width="5" height="234" rx="2" fill="#7fffc7"/>
-<g font-family="Segoe UI,Arial,sans-serif"><text x="84" y="85" fill="#7fffc7" font-size="15" font-weight="700" letter-spacing="4">LOGITECH G HUB · WINDOWS · LUA</text>
-<text x="80" y="155" fill="#f1f7fc" font-size="57" font-weight="700">Jay's G HUB</text><text x="80" y="222" fill="#f1f7fc" font-size="57" font-weight="700">Script Pack</text>
-<text x="84" y="270" fill="#a9bdce" font-size="21">Operator templates. Your calibration. Your control.</text>
-<rect x="84" y="315" width="170" height="40" rx="20" fill="#17352e"/><text x="169" y="341" fill="#8affcf" font-size="15" text-anchor="middle" font-weight="600">78 OPERATORS</text>
-<rect x="270" y="315" width="190" height="40" rx="20" fill="#182b3e"/><text x="365" y="341" fill="#aadfff" font-size="15" text-anchor="middle" font-weight="600">NEUTRAL DEFAULTS</text>
-<text x="1208" y="383" text-anchor="end" fill="#6c879e" font-size="13">BY JAY / contactjayclatty</text></g>
-<g transform="translate(855 81)"><rect width="346" height="231" rx="16" fill="#0c1723" stroke="#2b4154"/><circle cx="25" cy="23" r="4" fill="#526c81"/><circle cx="42" cy="23" r="4" fill="#526c81"/><circle cx="59" cy="23" r="4" fill="#526c81"/>
-<g font-family="Consolas,monospace" font-size="16"><text x="24" y="72" fill="#7391a7">-- start with your settings</text><text x="24" y="108" fill="#b8cddd">vertical <tspan fill="#7fffc7">= 0</tspan></text><text x="24" y="139" fill="#b8cddd">horizontal <tspan fill="#7fffc7">= 0</tspan></text><text x="24" y="190" fill="#84badc">backup → install → configure</text></g></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="440" viewBox="0 0 1280 440" role="img" aria-labelledby="title desc">
+<title id="title">Jay's G HUB Script Pack</title><desc id="desc">Independent Siege-inspired tactical interface. 78 operator templates with neutral defaults.</desc>
+<defs><linearGradient id="bg" x2="1" y2="1"><stop stop-color="#0a1019"/><stop offset="1" stop-color="#192d3b"/></linearGradient><pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse"><path d="M32 0H0V32" fill="none" stroke="#91c6d9" stroke-opacity=".05"/></pattern><pattern id="hatch" width="16" height="16" patternUnits="userSpaceOnUse" patternTransform="rotate(35)"><rect width="5" height="16" fill="#f3c84b" fill-opacity=".35"/></pattern></defs>
+<rect width="1280" height="440" fill="url(#bg)"/><rect width="1280" height="440" fill="url(#grid)"/>
+<path d="M928 0h352v440H712z" fill="#07101a" fill-opacity=".6"/><path d="M1122 0h158v440H930z" fill="url(#hatch)" opacity=".15"/>
+<rect width="1280" height="6" fill="#f3c84b"/><rect x="42" y="40" width="5" height="315" fill="#f3c84b"/>
+<g font-family="Bahnschrift,Segoe UI,Arial,sans-serif">
+<text x="68" y="64" fill="#f3c84b" font-size="15" font-weight="700" letter-spacing="4">JAY // OPERATOR TOOLS</text>
+<text x="63" y="155" fill="#f2f5f7" font-size="70" font-weight="800" letter-spacing="1">G HUB</text><text x="63" y="232" fill="#f2f5f7" font-size="70" font-weight="800" letter-spacing="1">SCRIPT PACK</text>
+<text x="68" y="283" fill="#adc2d2" font-size="20" letter-spacing="1">RAINBOW SIX SIEGE / LUA TEMPLATES / WINDOWS</text>
+<path d="M68 315h685l-15 42H68z" fill="#f3c84b"/><text x="86" y="343" fill="#0d141d" font-size="16" font-weight="800" letter-spacing="2">BACK UP. INSTALL. CONFIGURE.</text>
+<text x="68" y="404" fill="#7b96ab" font-size="12" letter-spacing="2">INDEPENDENT PROJECT BY JAY // NO UBISOFT OR LOGITECH ENDORSEMENT</text>
+<text x="1014" y="216" fill="#f3c84b" font-size="140" font-weight="800" text-anchor="middle">78</text><text x="1014" y="257" fill="#edf3f7" font-size="19" font-weight="700" text-anchor="middle" letter-spacing="5">OPERATORS</text>
+<text x="1014" y="314" fill="#78d9ea" font-size="15" font-weight="700" text-anchor="middle" letter-spacing="2">VERTICAL 0 / HORIZONTAL 0</text><text x="1014" y="340" fill="#7b96ab" font-size="13" text-anchor="middle">NEUTRAL DEFAULTS. YOUR CALIBRATION.</text>
+</g><path d="M840 70v-26h33M1194 70V44h-33M840 344v26h33M1194 344v26h-33" fill="none" stroke="#78d9ea" stroke-width="3"/></svg>

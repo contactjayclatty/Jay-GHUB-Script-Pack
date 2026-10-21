@@ -1,6 +1,6 @@
 <div align="center">
 
-![Jay's G HUB Script Pack — 78 operator templates with neutral defaults](assets/banner.svg)
+![Jay's G HUB Script Pack â€” 78 operator templates with neutral defaults](assets/banner.svg)
 
 # Jay's G HUB Script Pack
 
@@ -9,15 +9,17 @@
 Keep your scripts organized. Preserve existing tuning. Start with your own calibration.
 
 [![Windows validation](https://github.com/contactjayclatty/Jay-GHUB-Script-Pack/actions/workflows/validate.yml/badge.svg?branch=main)](https://github.com/contactjayclatty/Jay-GHUB-Script-Pack/actions/workflows/validate.yml)
-![Operators: 78](https://img.shields.io/badge/operators-78-78cfff)
-![Defaults: zero movement](https://img.shields.io/badge/defaults-zero%20movement-7fffc7)
+![Operators: 78](https://img.shields.io/badge/operators-78-f3c84b)
+![Defaults: zero movement](https://img.shields.io/badge/defaults-zero%20movement-78d9ea)
 ![Platform: Windows](https://img.shields.io/badge/platform-Windows-8baac7)
 
-[Quick start](#quick-start) · [Configuration](#configure-your-script) · [All operators](#included-operators) · [Troubleshooting](#troubleshooting) · [Discussions](https://github.com/contactjayclatty/Jay-GHUB-Script-Pack/discussions)
+[Quick start](#quick-start) Â· [Configuration](#configure-your-script) Â· [All operators](#included-operators) Â· [Troubleshooting](#troubleshooting) Â· [Discussions](https://github.com/contactjayclatty/Jay-GHUB-Script-Pack/discussions)
 
 </div>
 
-> **Release status:** v1.1.0 is prepared as a **draft**. Public installer downloads are not available yet. Browse the source or [build it locally](#build-from-source). The install/uninstall engine passes automated tests; installer UI and discovery on another G HUB installation still need testing.
+**[DOWNLOAD INSTALLER](https://github.com/contactjayclatty/Jay-GHUB-Script-Pack/releases/download/v1.1.0/Jay-GHUB-Script-Pack-v1.1.0.exe)** · **[WINDOWS ZIP](https://github.com/contactjayclatty/Jay-GHUB-Script-Pack/releases/download/v1.1.0/Jay-GHUB-Script-Pack-v1.1.0-windows.zip)** · [Release notes & checksums](https://github.com/contactjayclatty/Jay-GHUB-Script-Pack/releases/tag/v1.1.0)
+
+> **Jay's project release, not a Ubisoft or Logitech product.** The exact release executable is checked with Microsoft Defender on an isolated Windows runner; the [scan report](https://github.com/contactjayclatty/Jay-GHUB-Script-Pack/releases/download/v1.1.0/malware-scan-report.json) records its SHA-256 hash, engine and signature versions. This is a single-engine scan, not a guarantee of safety. The executable remains unsigned, and discovery on another G HUB installation still needs testing.
 
 ## What you get
 
@@ -41,9 +43,9 @@ Install and open **Logitech G HUB** at least once using the Windows account that
 
 ### 2. Run the installer
 
-When the release is published, download the `.exe` or Windows ZIP from [Releases](https://github.com/contactjayclatty/Jay-GHUB-Script-Pack/releases). For now, use the source build below.
+Download the `.exe` or Windows ZIP from [the v1.1.0 release](https://github.com/contactjayclatty/Jay-GHUB-Script-Pack/releases/tag/v1.1.0). Compare the file hash with `SHA256SUMS.txt` and the attached Defender scan report if you want to verify the exact artifact.
 
-Run the installer and choose **Install scripts**. It targets the current Windows user's data automatically—no username edits or administrator access are required for the normal per-user install.
+Run the installer and choose **Install scripts**. It targets the current Windows user's data automaticallyâ€”no username edits or administrator access are required for the normal per-user install.
 
 ### 3. Select and configure
 
@@ -64,7 +66,7 @@ HorizontalStrength = 0     -- Negative = left; positive = right.
 Your weapon, attachments, DPI and sensitivity affect calibration. There is no universal strength value, and this project does not claim measured recoil accuracy for all operators.
 
 <details>
-<summary><strong>Advanced settings — normally leave these alone</strong></summary>
+<summary><strong>Advanced settings â€” normally leave these alone</strong></summary>
 
 | Setting | Default | Purpose |
 | :--- | :---: | :--- |
@@ -82,24 +84,30 @@ These are guidance comments, not locked settings. Changing timing changes how ex
 
 </details>
 
+## Installer preview
+
+![Tactical installer interface with Install scripts, Uninstall pack and Close buttons](assets/installer-preview.png)
+
+This is a local rendering of the real Windows Forms interface. It verifies layout, not another PC's G HUB discovery.
+
 ## What gets installed?
 
 ```text
 %LOCALAPPDATA%\LGHUB\
-├── scripts\
-│   ├── <unique operator ID>\
-│   │   ├── config.json     # Display name in G HUB
-│   │   └── script.lua      # Operator template
-│   └── ...
-└── script-pack-installs\
-    └── siege-operator-lua-pack-v1\
-        ├── installed.json # Ownership and hashes for uninstall
-        └── backups\
-            └── <timestamp>\
-                └── scripts\
+â”œâ”€â”€ scripts\
+â”‚   â”œâ”€â”€ <unique operator ID>\
+â”‚   â”‚   â”œâ”€â”€ config.json     # Display name in G HUB
+â”‚   â”‚   â””â”€â”€ script.lua      # Operator template
+â”‚   â””â”€â”€ ...
+â””â”€â”€ script-pack-installs\
+    â””â”€â”€ siege-operator-lua-pack-v1\
+        â”œâ”€â”€ installed.json # Ownership and hashes for uninstall
+        â””â”€â”€ backups\
+            â””â”€â”€ <timestamp>\
+                â””â”€â”€ scripts\
 ```
 
-**Already have scripts?** Matching names are skipped—even if the contents differ. Older names such as `Jager` and `Valk` are recognized as aliases for `Jäger` and `Valkyrie`. Unrelated scripts stay in place. Existing scripts are not automatically updated.
+**Already have scripts?** Matching names are skippedâ€”even if the contents differ. Older names such as `Jager` and `Valk` are recognized as aliases for `JÃ¤ger` and `Valkyrie`. Unrelated scripts stay in place. Existing scripts are not automatically updated.
 
 ## Included operators
 
@@ -158,7 +166,7 @@ Source: [Ubisoft's operator directory](https://www.ubisoft.com/en-us/game/rainbo
 | Scripts do not appear | Restart G HUB and check its Scripting editor. If still missing, report Windows/G HUB versions and the install result; cross-install discovery is still being validated. |
 | Uninstall leaves a script behind | Its files or folder contents changed. It was preserved to protect your edits. |
 
-[Report an installation bug](https://github.com/contactjayclatty/Jay-GHUB-Script-Pack/issues/new?template=bug_report.yml) · [Ask a setup question](https://github.com/contactjayclatty/Jay-GHUB-Script-Pack/discussions)
+[Report an installation bug](https://github.com/contactjayclatty/Jay-GHUB-Script-Pack/issues/new?template=bug_report.yml) Â· [Ask a setup question](https://github.com/contactjayclatty/Jay-GHUB-Script-Pack/discussions)
 
 ## Verified behavior and remaining checks
 
@@ -169,6 +177,7 @@ Source: [Ubisoft's operator directory](https://www.ubisoft.com/en-us/game/rainbo
 | Backup retention and preservation of edited scripts | Automated tests |
 | Ownership-aware uninstall and corrupt-payload rejection | Automated tests |
 | Payload hashes and Windows executable build | Windows CI |
+| Exact release executable and extracted payload malware scan | Microsoft Defender report attached to the release |
 | Lua syntax for all 78 templates | Checked locally |
 | Installer UI and discovery on another G HUB install | **Still needs testing** |
 

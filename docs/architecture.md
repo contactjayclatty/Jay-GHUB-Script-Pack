@@ -9,3 +9,5 @@ The user runs `Launcher.cs`, a Windows .NET Framework executable. It extracts it
 The product distributes neutral templates; it does not measure recoil, promise specific performance, automatically select profiles, alter game files, sell entitlements or operate a backend. It is an independent Windows utility with no live service and no project-held credentials. GitHub repository/release access uses the maintainer's authenticated CLI outside the product.
 
 Developer dependencies: Python 3 (standard library only), Windows PowerShell, .NET Framework C# compiler; Lua compiler is used for template-generation syntax checks. Runtime dependencies: Windows PowerShell and .NET Framework. There are no Python packages or embedded credentials.
+
+The tactical UI is authored with Windows Forms, an original project icon and an SVG README banner. The preview renderer draws the actual form without installing anything. CI runs Microsoft Defender against the built release executable and extracted payload, then uploads both the scanned binary and its report. Release tooling must preserve that exact artifact.

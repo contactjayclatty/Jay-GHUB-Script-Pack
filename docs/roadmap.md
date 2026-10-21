@@ -5,7 +5,7 @@
 - Test installer UI and G HUB discovery on another Windows account or PC.
 - Record Windows/G HUB versions and results in [testing.md](testing.md).
 - Check neutral templates, existing-name handling and edited-script preservation there.
-- Obtain Jay's approval before publishing the prepared draft release.
+- Publish the first release after the owner's approved redesign and successful malware scan; broad compatibility testing remains open.
 
 ## Candidate improvements
 
